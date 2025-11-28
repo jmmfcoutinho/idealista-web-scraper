@@ -1,0 +1,39 @@
+# Idealista Scraper Configuration
+# Copy this file to config.yaml and customize as needed.
+
+# Database configuration
+database:
+  # SQLite by default, can be overridden with DATABASE_URL env var
+  url: "sqlite:///./data/idealista.db"
+
+# Scraping configuration
+scraping:
+  # Delay between requests in seconds
+  delay_seconds: 2.0
+  # Maximum retry attempts for failed requests
+  max_retries: 3
+  # Whether to use Bright Data Scraping Browser (requires BRIGHTDATA_BROWSER_* env vars)
+  use_brightdata: true
+  # Maximum pages to scrape per search (null for unlimited)
+  max_pages: null
+
+# Filter configuration for listings
+filters:
+  min_price: null
+  max_price: null
+  min_size: null
+  max_size: null
+  # Typology filter (e.g., "t0", "t1", "t2", "t3", "t4", "t5+")
+  typology: null
+
+# Run configuration
+run:
+  # Operation type: "comprar", "arrendar", or "both"
+  operation: "both"
+  # Geographic level: "concelho" or "distrito"
+  geographic_level: "concelho"
+  # Location slugs to scrape (e.g., ["lisboa", "porto", "cascais"])
+  locations: []
+  # Property types to scrape (e.g., ["casas", "apartamentos"])
+  property_types:
+    - "casas"

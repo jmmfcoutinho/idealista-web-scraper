@@ -71,7 +71,9 @@ Use `pyproject.toml` (PEP 621) with `uv`/`pip`/`poetry` – implementation detai
   - `python-dotenv` (load `.env`)
   - `typer` or `click` (CLI – plan assumes `typer`)
 - Scraping
-  - A Zyte client library if desired, or plain `httpx`/`requests` if Zyte is used through their HTTP API.
+  - `playwright` (for Bright Data Scraping Browser connection)
+  - `brightdata-sdk` (optional, for SDK features)
+  - `requests` or `httpx` (for simple HTTP requests)
 - Export
   - `pandas`
   - `pyarrow` (for Parquet)
@@ -273,11 +275,15 @@ Relationships:
 
 Define a small interface class and at least one implementation.
 
+> **UPDATE (2025-11-28):** After testing, Zyte API fails with 520 Website Ban errors on all Idealista URLs. 
+> Switched to **Bright Data Scraping Browser** which successfully bypasses Idealista's anti-bot protection.
+> See `IMPLEMENTATION_PLAN_PROGRESS_LOG.md` for full test results.
+
 ```python
 class PageClient(Protocol):
     """Protocol for fetching HTML pages.
 
-    Implementations may use Zyte, httpx, requests, etc.
+    Implementations may use Bright Data, Zyte, httpx, requests, etc.
     """
 
     def get_html(self, url: str, wait_selector: str | None = None) -> str:
@@ -293,10 +299,29 @@ class PageClient(Protocol):
 ```
 
 Implementations:
-- `ZyteClient(PageClient)` – calls Zyte API using `ZYTE_API_KEY`.
+- `BrightDataClient(PageClient)` – **RECOMMENDED** – connects to Bright Data Scraping Browser via Playwright.
+  - Uses Playwright to connect via WebSocket to `wss://brd.superproxy.io:9222`
+  - Requires `BRIGHTDATA_BROWSER_USER` and `BRIGHTDATA_BROWSER_PASS` environment variables
+  - Supports `wait_for_selector` for JavaScript-rendered content
+  - Successfully tested against Idealista (see progress log)
+  - Example:
+    ```python
+    from playwright.sync_api import sync_playwright
+    
+    BROWSER_WS = f"wss://{user}:{password}@brd.superproxy.io:9222"
+    
+    with sync_playwright() as p:
+        browser = p.chromium.connect_over_cdp(BROWSER_WS)
+        page = browser.new_page()
+        page.goto(url, timeout=120_000)
+        page.wait_for_selector(wait_selector, timeout=30_000)
+        html = page.content()
+        browser.close()
+    ```
+
+- `ZyteClient(PageClient)` – **NOT RECOMMENDED** – Zyte API (fails on Idealista with 520 bans).
   - Uses `requests` to POST to `https://api.zyte.com/v1/extract`.
-  - **IMPORTANT**: Must use `browserHtml: true` (not `httpResponseBody`) because Idealista
-    content is JavaScript-rendered.
+  - **WARNING**: Tested 2025-11-28 and all requests returned 520 Website Ban errors.
   - Payload example:
     ```python
     {
