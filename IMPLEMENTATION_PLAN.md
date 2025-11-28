@@ -38,7 +38,7 @@ idealista-web-scraper/
 │       ├── scraping/
 │       │   ├── __init__.py
 │       │   ├── client.py        # Zyte / HTTP client abstraction
-│       │   ├── selectors.py     # Parsing helpers based on SCRAPER_FINDINGS
+│       │   ├── selectors.py     # Parsing helpers based on 
 │       │   ├── pre_scraper.py   # Phase 1 logic
 │       │   ├── listings_scraper.py
 │       │   └── details_scraper.py
@@ -54,9 +54,6 @@ idealista-web-scraper/
 ├── .env
 ├── .env.example
 ├── IMPLEMENTATION_PLAN.md
-├── SCRAPER_FINDINGS.md
-├── SCRAPING_LOGIC.md
-├── architecture.md
 ├── pyproject.toml
 ├── README.md
 └── tests/
@@ -283,8 +280,12 @@ class PageClient(Protocol):
     Implementations may use Zyte, httpx, requests, etc.
     """
 
-    def get_html(self, url: str) -> str:
+    def get_html(self, url: str, wait_selector: str | None = None) -> str:
         """Return the HTML content for the given URL.
+
+        Args:
+            url: The URL to fetch.
+            wait_selector: Optional CSS selector to wait for (for JS-rendered pages).
 
         Raises:
             RuntimeError: If the page could not be fetched.
@@ -294,47 +295,104 @@ class PageClient(Protocol):
 Implementations:
 - `ZyteClient(PageClient)` – calls Zyte API using `ZYTE_API_KEY`.
   - Uses `requests` to POST to `https://api.zyte.com/v1/extract`.
-  - Payload: `{"url": url, "httpResponseBody": True, "followRedirect": True}`.
-  - Decodes base64 response body.
-- (Optional) `RequestsClient(PageClient)` for local dev.
+  - **IMPORTANT**: Must use `browserHtml: true` (not `httpResponseBody`) because Idealista
+    content is JavaScript-rendered.
+  - Payload example:
+    ```python
+    {
+        "url": url,
+        "browserHtml": True,
+        "actions": [
+            {
+                "action": "waitForSelector",
+                "selector": {"type": "css", "value": wait_selector},
+                "timeout": 15  # Max 15 seconds allowed by Zyte
+            }
+        ] if wait_selector else []
+    }
+    ```
+  - Response contains `browserHtml` key with rendered HTML (not base64 encoded).
+  - Retry on HTTP 520 ("Website Ban") with exponential backoff.
+- (Optional) `RequestsClient(PageClient)` for local dev (won't work for JS-rendered content).
 
 Constructor should accept a `ScrapingConfig` and `ZYTE_API_KEY`.
 
+**Wait Selectors by Page Type** (see `html/zyte/FINDINGS.md` for full details):
+- Homepage: `nav.locations-list`
+- District concelhos page: `section.municipality-search` (may timeout, but still returns content)
+- Search results: `article.item`
+- Listing detail: `section.detail-info`
+
 ### 3.2. Selector Helpers (`scraping/selectors.py`)
 
-Based on `SCRAPER_FINDINGS.md`, define pure functions to parse HTML into typed structures using `lxml` or `selectolax`/`BeautifulSoup`.
+Based on `html/zyte/FINDINGS.md`, define pure functions to parse HTML into typed structures using `BeautifulSoup`.
 
 Data models (Pydantic or `@dataclass`) for parsed entities:
 
 - `ParsedListingCard`
-  - `idealista_id: int`
-  - `url: str`
-  - `title: str`
-  - `price: int | None`
+  - `idealista_id: int`  # from `data-element-id` attribute
+  - `url: str`  # from `a.item-link` href
+  - `title: str`  # from `a.item-link` text
+  - `price: int | None`  # from `span.item-price`, parsed
   - `operation: Literal["comprar", "arrendar"]`
   - `property_type: str`
   - `summary_location: str | None`
-  - `details_raw: str`  # e.g. "T3 110 m² área bruta"
+  - `details_raw: list[str]`  # from `span.item-detail` elements (e.g., ["T3", "110 m² área bruta"])
+  - `description: str | None`  # from `p.ellipsis`
+  - `agency_name: str | None`  # from `picture.logo-branding img` alt
+  - `agency_url: str | None`  # from `picture.logo-branding a` href
+  - `image_url: str | None`  # from `img[alt="Primeira foto do imóvel"]` src
   - `tags: list[str]`
 
 - `ParsedListingDetail`
   - All extra fields from the detail page (location breakdown, characteristics, equipment, energy cert, description).
+  - Key selectors:
+    - Title: `h1`
+    - Price: `span.info-data-price`
+    - Location: `span.main-info__title-minor`
+    - Features: `div.info-features span` elements
+    - Tags: `div.detail-info-tags span.tag`
+    - Description: `div.comment p`
 
 - `SearchMetadata`
-  - `total_count: int`
-  - `page: int`
-  - `has_next_page: bool`
-  - `last_page: int | None`
+  - `total_count: int`  # from `h1#h1-container` text, e.g., "4.423 casas..."
+  - `page: int`  # from `div.pagination li.selected span`
+  - `has_next_page: bool`  # from `div.pagination li.next`
+  - `last_page: int | None`  # parsed from pagination links
   - `lowest_price_on_page: int | None`
+
+- `ParsedConcelhoLink`
+  - `name: str`
+  - `slug: str`
+  - `href: str`
+
+- `ParsedDistrictInfo`
+  - `name: str`
+  - `slug: str`
+  - `concelhos: list[ParsedConcelhoLink]`
+  - `listing_count: int | None`
 
 Parsing functions:
 
 - `parse_listings_page(html: str, operation: str) -> tuple[list[ParsedListingCard], SearchMetadata]`
+  - Selector: `article.item` with `data-element-id` attribute (filters out ads)
+  - Returns 30 listings per page
+  
 - `parse_listing_detail(html: str) -> ParsedListingDetail`
+
+- `parse_homepage_districts(html: str) -> list[ParsedDistrictInfo]`
+  - Container: `nav.locations-list`
+  - Regions: `h3.region-title`
+  - Subregions (districts): `a.subregion`
+  - Municipalities: `a.icon-elbow`
+
+- `parse_concelhos_page(html: str) -> list[ParsedConcelhoLink]`
+  - Links matching `/comprar-casas/` or `/arrendar-casas/`
 
 These functions should:
 - Be pure (no I/O, just HTML in / objects out).
 - Contain all selectors and small bits of parsing logic.
+- Use BeautifulSoup for parsing.
 
 ---
 

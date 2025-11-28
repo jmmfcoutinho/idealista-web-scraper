@@ -1,0 +1,1265 @@
+<!DOCTYPE html><html lang="pt" env="pt" data-userauth="false" username=""><head>
+<script>window.NREUM||(NREUM={});NREUM.info={"errorBeacon":"bam.nr-data.net","licenseKey":"b800e403ef","agent":"","beacon":"bam.nr-data.net","applicationTime":25,"applicationID":"101954103","transactionName":"Ml1WYkNTDxdZUxBYVwsXZ0ZDWw8De18KRUoKVFhTQx1BTH91MBg=","queueTime":0};
+(window.NREUM||(NREUM={})).init={privacy:{cookies_enabled:false},ajax:{deny_list:[]},feature_flags:["soft_nav"]};(window.NREUM||(NREUM={})).loader_config={xpid:"VQIGUlZbGwIAVVhXAwAHVQ==",licenseKey:"b800e403ef",applicationID:"101954103",browserID:"119188166"};;/*! For license information please see nr-loader-full-1.303.0.min.js.LICENSE.txt */
+(()=>{var e,t,r={384:(e,t,r)=>{"use strict";r.d(t,{NT:()=>a,US:()=>u,Zm:()=>s,bQ:()=>d,dV:()=>c,pV:()=>l});var n=r(6154),i=r(1863),o=r(1910);const a={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function s(){return n.gm.NREUM||(n.gm.NREUM={}),void 0===n.gm.newrelic&&(n.gm.newrelic=n.gm.NREUM),n.gm.NREUM}function c(){let e=s();return e.o||(e.o={ST:n.gm.setTimeout,SI:n.gm.setImmediate||n.gm.setInterval,CT:n.gm.clearTimeout,XHR:n.gm.XMLHttpRequest,REQ:n.gm.Request,EV:n.gm.Event,PR:n.gm.Promise,MO:n.gm.MutationObserver,FETCH:n.gm.fetch,WS:n.gm.WebSocket},(0,o.i)(...Object.values(e.o))),e}function d(e,t){let r=s();r.initializedAgents??={},t.initializedAt={ms:(0,i.t)(),date:new Date},r.initializedAgents[e]=t}function u(e,t){s()[e]=t}function l(){return function(){let e=s();const t=e.info||{};e.info={beacon:a.beacon,errorBeacon:a.errorBeacon,...t}}(),function(){let e=s();const t=e.init||{};e.init={...t}}(),c(),function(){let e=s();const t=e.loader_config||{};e.loader_config={...t}}(),s()}},782:(e,t,r)=>{"use strict";r.d(t,{T:()=>n});const n=r(860).K7.pageViewTiming},860:(e,t,r)=>{"use strict";r.d(t,{$J:()=>u,K7:()=>c,P3:()=>d,XX:()=>i,Yy:()=>s,df:()=>o,qY:()=>n,v4:()=>a});const n="events",i="jserrors",o="browser/blobs",a="rum",s="browser/logs",c={ajax:"ajax",genericEvents:"generic_events",jserrors:i,logging:"logging",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations",spa:"spa"},d={[c.pageViewEvent]:1,[c.pageViewTiming]:2,[c.metrics]:3,[c.jserrors]:4,[c.spa]:5,[c.ajax]:6,[c.sessionTrace]:7,[c.softNav]:8,[c.sessionReplay]:9,[c.logging]:10,[c.genericEvents]:11},u={[c.pageViewEvent]:a,[c.pageViewTiming]:n,[c.ajax]:n,[c.spa]:n,[c.softNav]:n,[c.metrics]:i,[c.jserrors]:i,[c.sessionTrace]:o,[c.sessionReplay]:o,[c.logging]:s,[c.genericEvents]:"ins"}},944:(e,t,r)=>{"use strict";r.d(t,{R:()=>i});var n=r(3241);function i(e,t){"function"==typeof console.debug&&(console.debug("New Relic Warning: https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#".concat(e),t),(0,n.W)({agentIdentifier:null,drained:null,type:"data",name:"warn",feature:"warn",data:{code:e,secondary:t}}))}},993:(e,t,r)=>{"use strict";r.d(t,{A$:()=>o,ET:()=>a,TZ:()=>s,p_:()=>i});var n=r(860);const i={ERROR:"ERROR",WARN:"WARN",INFO:"INFO",DEBUG:"DEBUG",TRACE:"TRACE"},o={OFF:0,ERROR:1,WARN:2,INFO:3,DEBUG:4,TRACE:5},a="log",s=n.K7.logging},1687:(e,t,r)=>{"use strict";r.d(t,{Ak:()=>d,Ze:()=>f,x3:()=>u});var n=r(3241),i=r(7836),o=r(3606),a=r(860),s=r(2646);const c={};function d(e,t){const r={staged:!1,priority:a.P3[t]||0};l(e),c[e].get(t)||c[e].set(t,r)}function u(e,t){e&&c[e]&&(c[e].get(t)&&c[e].delete(t),g(e,t,!1),c[e].size&&h(e))}function l(e){if(!e)throw new Error("agentIdentifier required");c[e]||(c[e]=new Map)}function f(e="",t="feature",r=!1){if(l(e),!e||!c[e].get(t)||r)return g(e,t);c[e].get(t).staged=!0,h(e)}function h(e){const t=Array.from(c[e]);t.every(([e,t])=>t.staged)&&(t.sort((e,t)=>e[1].priority-t[1].priority),t.forEach(([t])=>{c[e].delete(t),g(e,t)}))}function g(e,t,r=!0){const a=e?i.ee.get(e):i.ee,c=o.i.handlers;if(!a.aborted&&a.backlog&&c){if((0,n.W)({agentIdentifier:e,type:"lifecycle",name:"drain",feature:t}),r){const e=a.backlog[t],r=c[t];if(r){for(let t=0;e&&t<e.length;++t)p(e[t],r);Object.entries(r).forEach(([e,t])=>{Object.values(t||{}).forEach(t=>{t[0]?.on&&t[0]?.context()instanceof s.y&&t[0].on(e,t[1])})})}}a.isolatedBacklog||delete c[t],a.backlog[t]=null,a.emit("drain-"+t,[])}}function p(e,t){var r=e[1];Object.values(t[r]||{}).forEach(t=>{var r=e[0];if(t[0]===r){var n=t[1],i=e[3],o=e[2];n.apply(i,o)}})}},1741:(e,t,r)=>{"use strict";r.d(t,{W:()=>o});var n=r(944),i=r(4261);class o{#e(e,...t){if(this[e]!==o.prototype[e])return this[e](...t);(0,n.R)(35,e)}addPageAction(e,t){return this.#e(i.hG,e,t)}register(e){return this.#e(i.eY,e)}recordCustomEvent(e,t){return this.#e(i.fF,e,t)}setPageViewName(e,t){return this.#e(i.Fw,e,t)}setCustomAttribute(e,t,r){return this.#e(i.cD,e,t,r)}noticeError(e,t){return this.#e(i.o5,e,t)}setUserId(e){return this.#e(i.Dl,e)}setApplicationVersion(e){return this.#e(i.nb,e)}setErrorHandler(e){return this.#e(i.bt,e)}addRelease(e,t){return this.#e(i.k6,e,t)}log(e,t){return this.#e(i.$9,e,t)}start(){return this.#e(i.d3)}finished(e){return this.#e(i.BL,e)}recordReplay(){return this.#e(i.CH)}pauseReplay(){return this.#e(i.Tb)}addToTrace(e){return this.#e(i.U2,e)}setCurrentRouteName(e){return this.#e(i.PA,e)}interaction(e){return this.#e(i.dT,e)}wrapLogger(e,t,r){return this.#e(i.Wb,e,t,r)}measure(e,t){return this.#e(i.V1,e,t)}consent(e){return this.#e(i.Pv,e)}}},1863:(e,t,r)=>{"use strict";function n(){return Math.floor(performance.now())}r.d(t,{t:()=>n})},1910:(e,t,r)=>{"use strict";r.d(t,{i:()=>o});var n=r(944);const i=new Map;function o(...e){return e.every(e=>{if(i.has(e))return i.get(e);const t="function"==typeof e&&e.toString().includes("[native code]");return t||(0,n.R)(64,e?.name||e?.toString()),i.set(e,t),t})}},2555:(e,t,r)=>{"use strict";r.d(t,{D:()=>s,f:()=>a});var n=r(384),i=r(8122);const o={beacon:n.NT.beacon,errorBeacon:n.NT.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0};function a(e){try{return!!e.licenseKey&&!!e.errorBeacon&&!!e.applicationID}catch(e){return!1}}const s=e=>(0,i.a)(e,o)},2614:(e,t,r)=>{"use strict";r.d(t,{BB:()=>a,H3:()=>n,g:()=>d,iL:()=>c,tS:()=>s,uh:()=>i,wk:()=>o});const n="NRBA",i="SESSION",o=144e5,a=18e5,s={STARTED:"session-started",PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},c={SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},d={OFF:0,FULL:1,ERROR:2}},2646:(e,t,r)=>{"use strict";r.d(t,{y:()=>n});class n{constructor(e){this.contextId=e}}},2843:(e,t,r)=>{"use strict";r.d(t,{u:()=>i});var n=r(3878);function i(e,t=!1,r,i){(0,n.DD)("visibilitychange",function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)},r,i)}},3241:(e,t,r)=>{"use strict";r.d(t,{W:()=>o});var n=r(6154);const i="newrelic";function o(e={}){try{n.gm.dispatchEvent(new CustomEvent(i,{detail:e}))}catch(e){}}},3304:(e,t,r)=>{"use strict";r.d(t,{A:()=>o});var n=r(7836);const i=()=>{const e=new WeakSet;return(t,r)=>{if("object"==typeof r&&null!==r){if(e.has(r))return;e.add(r)}return r}};function o(e){try{return JSON.stringify(e,i())??""}catch(e){try{n.ee.emit("internal-error",[e])}catch(e){}return""}}},3333:(e,t,r)=>{"use strict";r.d(t,{$v:()=>u,TZ:()=>n,Xh:()=>c,Zp:()=>i,kd:()=>d,mq:()=>s,nf:()=>a,qN:()=>o});const n=r(860).K7.genericEvents,i=["auxclick","click","copy","keydown","paste","scrollend"],o=["focus","blur"],a=4,s=1e3,c=2e3,d=["PageAction","UserAction","BrowserPerformance"],u={RESOURCES:"experimental.resources",REGISTER:"register"}},3434:(e,t,r)=>{"use strict";r.d(t,{Jt:()=>o,YM:()=>d});var n=r(7836),i=r(5607);const o="nr@original:".concat(i.W),a=50;var s=Object.prototype.hasOwnProperty,c=!1;function d(e,t){return e||(e=n.ee),r.inPlace=function(e,t,n,i,o){n||(n="");const a="-"===n.charAt(0);for(let s=0;s<t.length;s++){const c=t[s],d=e[c];l(d)||(e[c]=r(d,a?c+n:n,i,c,o))}},r.flag=o,r;function r(t,r,n,c,d){return l(t)?t:(r||(r=""),nrWrapper[o]=t,function(e,t,r){if(Object.defineProperty&&Object.keys)try{return Object.keys(e).forEach(function(r){Object.defineProperty(t,r,{get:function(){return e[r]},set:function(t){return e[r]=t,t}})}),t}catch(e){u([e],r)}for(var n in e)s.call(e,n)&&(t[n]=e[n])}(t,nrWrapper,e),nrWrapper);function nrWrapper(){var o,s,l,f;let h;try{s=this,o=[...arguments],l="function"==typeof n?n(o,s):n||{}}catch(t){u([t,"",[o,s,c],l],e)}i(r+"start",[o,s,c],l,d);const g=performance.now();let p;try{return f=t.apply(s,o),p=performance.now(),f}catch(e){throw p=performance.now(),i(r+"err",[o,s,e],l,d),h=e,h}finally{const e=p-g,t={start:g,end:p,duration:e,isLongTask:e>=a,methodName:c,thrownError:h};t.isLongTask&&i("long-task",[t,s],l,d),i(r+"end",[o,s,f],l,d)}}}function i(r,n,i,o){if(!c||t){var a=c;c=!0;try{e.emit(r,n,i,t,o)}catch(t){u([t,r,n,i],e)}c=a}}}function u(e,t){t||(t=n.ee);try{t.emit("internal-error",e)}catch(e){}}function l(e){return!(e&&"function"==typeof e&&e.apply&&!e[o])}},3606:(e,t,r)=>{"use strict";r.d(t,{i:()=>o});var n=r(9908);o.on=a;var i=o.handlers={};function o(e,t,r,o){a(o||n.d,i,e,t,r)}function a(e,t,r,i,o){o||(o="feature"),e||(e=n.d);var a=t[o]=t[o]||{};(a[r]=a[r]||[]).push([e,i])}},3738:(e,t,r)=>{"use strict";r.d(t,{He:()=>i,Kp:()=>s,Lc:()=>d,Rz:()=>u,TZ:()=>n,bD:()=>o,d3:()=>a,jx:()=>l,sl:()=>f,uP:()=>c});const n=r(860).K7.sessionTrace,i="bstResource",o="resource",a="-start",s="-end",c="fn"+a,d="fn"+s,u="pushState",l=1e3,f=3e4},3785:(e,t,r)=>{"use strict";r.d(t,{R:()=>c,b:()=>d});var n=r(9908),i=r(1863),o=r(860),a=r(8154),s=r(993);function c(e,t,r={},c=s.p_.INFO,d,u=(0,i.t)()){(0,n.p)(a.xV,["API/logging/".concat(c.toLowerCase(),"/called")],void 0,o.K7.metrics,e),(0,n.p)(s.ET,[u,t,r,c,d],void 0,o.K7.logging,e)}function d(e){return"string"==typeof e&&Object.values(s.p_).some(t=>t===e.toUpperCase().trim())}},3878:(e,t,r)=>{"use strict";function n(e,t){return{capture:e,passive:!1,signal:t}}function i(e,t,r=!1,i){window.addEventListener(e,t,n(r,i))}function o(e,t,r=!1,i){document.addEventListener(e,t,n(r,i))}r.d(t,{DD:()=>o,jT:()=>n,sp:()=>i})},4234:(e,t,r)=>{"use strict";r.d(t,{W:()=>o});var n=r(7836),i=r(1687);class o{constructor(e,t){this.agentIdentifier=e,this.ee=n.ee.get(e),this.featureName=t,this.blocked=!1}deregisterDrain(){(0,i.x3)(this.agentIdentifier,this.featureName)}}},4261:(e,t,r)=>{"use strict";r.d(t,{$9:()=>d,BL:()=>s,CH:()=>h,Dl:()=>R,Fw:()=>y,PA:()=>m,Pl:()=>n,Pv:()=>_,Tb:()=>l,U2:()=>o,V1:()=>T,Wb:()=>x,bt:()=>b,cD:()=>v,d3:()=>w,dT:()=>c,eY:()=>g,fF:()=>f,hG:()=>i,k6:()=>a,nb:()=>p,o5:()=>u});const n="api-",i="addPageAction",o="addToTrace",a="addRelease",s="finished",c="interaction",d="log",u="noticeError",l="pauseReplay",f="recordCustomEvent",h="recordReplay",g="register",p="setApplicationVersion",m="setCurrentRouteName",v="setCustomAttribute",b="setErrorHandler",y="setPageViewName",R="setUserId",w="start",x="wrapLogger",T="measure",_="consent"},4387:(e,t,r)=>{"use strict";function n(e={}){return!(!e.id||!e.name)}function i(e){return"string"==typeof e&&e.trim().length<501||"number"==typeof e}function o(e,t){if(2!==t?.harvestEndpointVersion)return{};const r=t.agentRef.runtime.appMetadata.agents[0].entityGuid;return n(e)?{"mfe.id":e.id,"mfe.name":e.name,eventSource:e.eventSource,"parent.id":e.parent?.id||r}:{"entity.guid":r,appId:t.agentRef.info.applicationID}}r.d(t,{Ux:()=>o,c7:()=>n,yo:()=>i})},5205:(e,t,r)=>{"use strict";r.d(t,{j:()=>A});var n=r(384),i=r(1741);var o=r(2555),a=r(3333);const s=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var c=r(2614),d=r(944),u=r(8122);const l="[data-nr-mask]",f=e=>(0,u.a)(e,(()=>{const e={feature_flags:[],experimental:{allow_registered_children:!1,resources:!1},mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{ajax:{deny_list:void 0,block_internal:!0,enabled:!0,autoStart:!0},api:{get allow_registered_children(){return e.feature_flags.includes(a.$v.REGISTER)||e.experimental.allow_registered_children},set allow_registered_children(t){e.experimental.allow_registered_children=t},duplicate_registered_data:!1},browser_consent_mode:{enabled:!1},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},get feature_flags(){return e.feature_flags},set feature_flags(t){e.feature_flags=t},generic_events:{enabled:!0,autoStart:!0},harvest:{interval:30},jserrors:{enabled:!0,autoStart:!0},logging:{enabled:!0,autoStart:!0},metrics:{enabled:!0,autoStart:!0},obfuscate:void 0,page_action:{enabled:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,autoStart:!0},performance:{capture_marks:!1,capture_measures:!1,capture_detail:!0,resources:{get enabled(){return e.feature_flags.includes(a.$v.RESOURCES)||e.experimental.resources},set enabled(t){e.experimental.resources=t},asset_types:[],first_party_domains:[],ignore_newrelic:!0}},privacy:{cookies_enabled:!0},proxy:{assets:void 0,beacon:void 0},session:{expiresMs:c.wk,inactiveMs:c.BB},session_replay:{autoStart:!0,enabled:!1,preload:!1,sampling_rate:10,error_sampling_rate:100,collect_fonts:!1,inline_images:!1,fix_stylesheets:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){s(t)?e.mask_selector="".concat(t,",").concat(l):""===t||null===t?e.mask_selector=l:(0,d.R)(5,t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){s(t)?e.block_selector+=",".concat(t):""!==t&&(0,d.R)(6,t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,d.R)(7,t)}},session_trace:{enabled:!0,autoStart:!0},soft_navigations:{enabled:!0,autoStart:!0},spa:{enabled:!0,autoStart:!0},ssl:void 0,user_actions:{enabled:!0,elementAttributes:["id","className","tagName","type"]}}})());var h=r(6154),g=r(9324);let p=0;const m={buildEnv:g.F3,distMethod:g.Xs,version:g.xv,originTime:h.WN},v={consented:!1},b={appMetadata:{},get consented(){return this.session?.state?.consent||v.consented},set consented(e){v.consented=e},customTransaction:void 0,denyList:void 0,disabled:!1,harvester:void 0,isolatedBacklog:!1,isRecording:!1,loaderType:void 0,maxBytes:3e4,obfuscator:void 0,onerror:void 0,ptid:void 0,releaseIds:{},session:void 0,timeKeeper:void 0,registeredEntities:[],jsAttributesMetadata:{bytes:0},get harvestCount(){return++p}},y=e=>{const t=(0,u.a)(e,b),r=Object.keys(m).reduce((e,t)=>(e[t]={value:m[t],writable:!1,configurable:!0,enumerable:!0},e),{});return Object.defineProperties(t,r)};var R=r(5701);const w=e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e};var x=r(7836),T=r(3241);const _={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0},E=e=>(0,u.a)(e,_),S=new Set;function A(e,t={},r,a){let{init:s,info:c,loader_config:d,runtime:u={},exposed:l=!0}=t;if(!c){const e=(0,n.pV)();s=e.init,c=e.info,d=e.loader_config}e.init=f(s||{}),e.loader_config=E(d||{}),c.jsAttributes??={},h.bv&&(c.jsAttributes.isWorker=!0),e.info=(0,o.D)(c);const g=e.init,p=[c.beacon,c.errorBeacon];S.has(e.agentIdentifier)||(g.proxy.assets&&(w(g.proxy.assets),p.push(g.proxy.assets)),g.proxy.beacon&&p.push(g.proxy.beacon),e.beacons=[...p],function(e){const t=(0,n.pV)();Object.getOwnPropertyNames(i.W.prototype).forEach(r=>{const n=i.W.prototype[r];if("function"!=typeof n||"constructor"===n)return;let o=t[r];e[r]&&!1!==e.exposed&&"micro-agent"!==e.runtime?.loaderType&&(t[r]=(...t)=>{const n=e[r](...t);return o?o(...t):n})})}(e),(0,n.US)("activatedFeatures",R.B),e.runSoftNavOverSpa&&=!0===g.soft_navigations.enabled&&g.feature_flags.includes("soft_nav")),u.denyList=[...g.ajax.deny_list||[],...g.ajax.block_internal?p:[]],u.ptid=e.agentIdentifier,u.loaderType=r,e.runtime=y(u),S.has(e.agentIdentifier)||(e.ee=x.ee.get(e.agentIdentifier),e.exposed=l,(0,T.W)({agentIdentifier:e.agentIdentifier,drained:!!R.B?.[e.agentIdentifier],type:"lifecycle",name:"initialize",feature:void 0,data:e.config})),S.add(e.agentIdentifier)}},5270:(e,t,r)=>{"use strict";r.d(t,{Aw:()=>a,SR:()=>o,rF:()=>s});var n=r(384),i=r(7767);function o(e){return!!(0,n.dV)().o.MO&&(0,i.V)(e)&&!0===e?.session_trace.enabled}function a(e){return!0===e?.session_replay.preload&&o(e)}function s(e,t){try{if("string"==typeof t?.type){if("password"===t.type.toLowerCase())return"*".repeat(e?.length||0);if(void 0!==t?.dataset?.nrUnmask||t?.classList?.contains("nr-unmask"))return e}}catch(e){}return"string"==typeof e?e.replace(/[\S]/g,"*"):"*".repeat(e?.length||0)}},5289:(e,t,r)=>{"use strict";r.d(t,{GG:()=>o,Qr:()=>s,sB:()=>a});var n=r(3878);function i(){return"undefined"==typeof document||"complete"===document.readyState}function o(e,t){if(i())return e();(0,n.sp)("load",e,t)}function a(e){if(i())return e();(0,n.DD)("DOMContentLoaded",e)}function s(e){if(i())return e();(0,n.sp)("popstate",e)}},5607:(e,t,r)=>{"use strict";r.d(t,{W:()=>n});const n=(0,r(9566).bz)()},5701:(e,t,r)=>{"use strict";r.d(t,{B:()=>o,t:()=>a});var n=r(3241);const i=new Set,o={};function a(e,t){const r=t.agentIdentifier;o[r]??={},e&&"object"==typeof e&&(i.has(r)||(t.ee.emit("rumresp",[e]),o[r]=e,i.add(r),(0,n.W)({agentIdentifier:r,loaded:!0,drained:!0,type:"lifecycle",name:"load",feature:void 0,data:e})))}},6154:(e,t,r)=>{"use strict";r.d(t,{OF:()=>d,RI:()=>i,WN:()=>f,bv:()=>o,gm:()=>a,lR:()=>l,m:()=>c,mw:()=>s,sb:()=>u});var n=r(1863);const i="undefined"!=typeof window&&!!window.document,o="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),a=i?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),s=Boolean("hidden"===a?.document?.visibilityState),c=""+a?.location,d=/iPad|iPhone|iPod/.test(a.navigator?.userAgent),u=d&&"undefined"==typeof SharedWorker,l=(()=>{const e=a.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);return Array.isArray(e)&&e.length>=2?+e[1]:0})(),f=Date.now()-(0,n.t)()},6344:(e,t,r)=>{"use strict";r.d(t,{BB:()=>u,Qb:()=>l,TZ:()=>i,Ug:()=>a,Vh:()=>o,_s:()=>s,bc:()=>d,yP:()=>c});var n=r(2614);const i=r(860).K7.sessionReplay,o="errorDuringReplay",a=.12,s={DomContentLoaded:0,Load:1,FullSnapshot:2,IncrementalSnapshot:3,Meta:4,Custom:5},c={[n.g.ERROR]:15e3,[n.g.FULL]:3e5,[n.g.OFF]:0},d={RESET:{message:"Session was reset",sm:"Reset"},IMPORT:{message:"Recorder failed to import",sm:"Import"},TOO_MANY:{message:"429: Too Many Requests",sm:"Too-Many"},TOO_BIG:{message:"Payload was too large",sm:"Too-Big"},CROSS_TAB:{message:"Session Entity was set to OFF on another tab",sm:"Cross-Tab"},ENTITLEMENTS:{message:"Session Replay is not allowed and will not be started",sm:"Entitlement"}},u=5e3,l={API:"api",RESUME:"resume",SWITCH_TO_FULL:"switchToFull",INITIALIZE:"initialize",PRELOAD:"preload"}},6389:(e,t,r)=>{"use strict";function n(e,t=500,r={}){const n=r?.leading||!1;let i;return(...r)=>{n&&void 0===i&&(e.apply(this,r),i=setTimeout(()=>{i=clearTimeout(i)},t)),n||(clearTimeout(i),i=setTimeout(()=>{e.apply(this,r)},t))}}function i(e){let t=!1;return(...r)=>{t||(t=!0,e.apply(this,r))}}r.d(t,{J:()=>i,s:()=>n})},6630:(e,t,r)=>{"use strict";r.d(t,{T:()=>n});const n=r(860).K7.pageViewEvent},6774:(e,t,r)=>{"use strict";r.d(t,{T:()=>n});const n=r(860).K7.jserrors},7295:(e,t,r)=>{"use strict";r.d(t,{Xv:()=>a,gX:()=>i,iW:()=>o});var n=[];function i(e){if(!e||o(e))return!1;if(0===n.length)return!0;for(var t=0;t<n.length;t++){var r=n[t];if("*"===r.hostname)return!1;if(s(r.hostname,e.hostname)&&c(r.pathname,e.pathname))return!1}return!0}function o(e){return void 0===e.hostname}function a(e){if(n=[],e&&e.length)for(var t=0;t<e.length;t++){let r=e[t];if(!r)continue;0===r.indexOf("http://")?r=r.substring(7):0===r.indexOf("https://")&&(r=r.substring(8));const i=r.indexOf("/");let o,a;i>0?(o=r.substring(0,i),a=r.substring(i)):(o=r,a="");let[s]=o.split(":");n.push({hostname:s,pathname:a})}}function s(e,t){return!(e.length>t.length)&&t.indexOf(e)===t.length-e.length}function c(e,t){return 0===e.indexOf("/")&&(e=e.substring(1)),0===t.indexOf("/")&&(t=t.substring(1)),""===e||e===t}},7485:(e,t,r)=>{"use strict";r.d(t,{D:()=>i});var n=r(6154);function i(e){if(0===(e||"").indexOf("data:"))return{protocol:"data"};try{const t=new URL(e,location.href),r={port:t.port,hostname:t.hostname,pathname:t.pathname,search:t.search,protocol:t.protocol.slice(0,t.protocol.indexOf(":")),sameOrigin:t.protocol===n.gm?.location?.protocol&&t.host===n.gm?.location?.host};return r.port&&""!==r.port||("http:"===t.protocol&&(r.port="80"),"https:"===t.protocol&&(r.port="443")),r.pathname&&""!==r.pathname?r.pathname.startsWith("/")||(r.pathname="/".concat(r.pathname)):r.pathname="/",r}catch(e){return{}}}},7699:(e,t,r)=>{"use strict";r.d(t,{It:()=>o,KC:()=>s,No:()=>i,qh:()=>a});var n=r(860);const i=16e3,o=1e6,a="SESSION_ERROR",s={[n.K7.logging]:!0,[n.K7.genericEvents]:!1,[n.K7.jserrors]:!1,[n.K7.ajax]:!1}},7767:(e,t,r)=>{"use strict";r.d(t,{V:()=>i});var n=r(6154);const i=e=>n.RI&&!0===e?.privacy.cookies_enabled},7836:(e,t,r)=>{"use strict";r.d(t,{P:()=>s,ee:()=>c});var n=r(384),i=r(8990),o=r(2646),a=r(5607);const s="nr@context:".concat(a.W),c=function e(t,r){var n={},a={},u={},l=!1;try{l=16===r.length&&d.initializedAgents?.[r]?.runtime.isolatedBacklog}catch(e){}var f={on:g,addEventListener:g,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,o){!1!==o&&(o=!0);if(c.aborted&&!i)return;t&&o&&t.emit(e,r,n);var s=h(n);p(e).forEach(e=>{e.apply(s,r)});var d=v()[a[e]];d&&d.push([f,e,r,s]);return s},get:m,listeners:p,context:h,buffer:function(e,t){const r=v();if(t=t||"feature",f.aborted)return;Object.entries(e||{}).forEach(([e,n])=>{a[n]=t,t in r||(r[t]=[])})},abort:function(){f._aborted=!0,Object.keys(f.backlog).forEach(e=>{delete f.backlog[e]})},isBuffering:function(e){return!!v()[a[e]]},debugId:r,backlog:l?{}:t&&"object"==typeof t.backlog?t.backlog:{},isolatedBacklog:l};return Object.defineProperty(f,"aborted",{get:()=>{let e=f._aborted||!1;return e||(t&&(e=t.aborted),e)}}),f;function h(e){return e&&e instanceof o.y?e:e?(0,i.I)(e,s,()=>new o.y(s)):new o.y(s)}function g(e,t){n[e]=p(e).concat(t)}function p(e){return n[e]||[]}function m(t){return u[t]=u[t]||e(f,t)}function v(){return f.backlog}}(void 0,"globalEE"),d=(0,n.Zm)();d.ee||(d.ee=c)},8122:(e,t,r)=>{"use strict";r.d(t,{a:()=>i});var n=r(944);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.R)(3);if(!t||"object"!=typeof t)return(0,n.R)(4);const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),o=0===Object.keys(r).length?e:r;for(let a in o)if(void 0!==e[a])try{if(null===e[a]){r[a]=null;continue}Array.isArray(e[a])&&Array.isArray(t[a])?r[a]=Array.from(new Set([...e[a],...t[a]])):"object"==typeof e[a]&&"object"==typeof t[a]?r[a]=i(e[a],t[a]):r[a]=e[a]}catch(e){r[a]||(0,n.R)(1,e)}return r}catch(e){(0,n.R)(2,e)}}},8139:(e,t,r)=>{"use strict";r.d(t,{u:()=>f});var n=r(7836),i=r(3434),o=r(8990),a=r(6154);const s={},c=a.gm.XMLHttpRequest,d="addEventListener",u="removeEventListener",l="nr@wrapped:".concat(n.P);function f(e){var t=function(e){return(e||n.ee).get("events")}(e);if(s[t.debugId]++)return t;s[t.debugId]=1;var r=(0,i.YM)(t,!0);function f(e){r.inPlace(e,[d,u],"-",g)}function g(e,t){return e[1]}return"getPrototypeOf"in Object&&(a.RI&&h(document,f),c&&h(c.prototype,f),h(a.gm,f)),t.on(d+"-start",function(e,t){var n=e[1];if(null!==n&&("function"==typeof n||"object"==typeof n)&&"newrelic"!==e[0]){var i=(0,o.I)(n,l,function(){var e={object:function(){if("function"!=typeof n.handleEvent)return;return n.handleEvent.apply(n,arguments)},function:n}[typeof n];return e?r(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=e[1]=i}}),t.on(u+"-start",function(e){e[1]=this.wrapped||e[1]}),t}function h(e,t,...r){let n=e;for(;"object"==typeof n&&!Object.prototype.hasOwnProperty.call(n,d);)n=Object.getPrototypeOf(n);n&&t(n,...r)}},8154:(e,t,r)=>{"use strict";r.d(t,{z_:()=>o,XG:()=>s,TZ:()=>n,rs:()=>i,xV:()=>a});r(6154),r(9566),r(384);const n=r(860).K7.metrics,i="sm",o="cm",a="storeSupportabilityMetrics",s="storeEventMetrics"},8374:(e,t,r)=>{r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},8990:(e,t,r)=>{"use strict";r.d(t,{I:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},9300:(e,t,r)=>{"use strict";r.d(t,{T:()=>n});const n=r(860).K7.ajax},9324:(e,t,r)=>{"use strict";r.d(t,{AJ:()=>a,F3:()=>i,Xs:()=>o,Yq:()=>s,xv:()=>n});const n="1.303.0",i="PROD",o="CDN",a="@newrelic/rrweb",s="1.0.1"},9566:(e,t,r)=>{"use strict";r.d(t,{LA:()=>s,ZF:()=>c,bz:()=>a,el:()=>d});var n=r(6154);const i="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";function o(e,t){return e?15&e[t]:16*Math.random()|0}function a(){const e=n.gm?.crypto||n.gm?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),i.split("").map(e=>"x"===e?o(t,r++).toString(16):"y"===e?(3&o()|8).toString(16):e).join("")}function s(e){const t=n.gm?.crypto||n.gm?.msCrypto;let r,i=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const a=[];for(var s=0;s<e;s++)a.push(o(r,i++).toString(16));return a.join("")}function c(){return s(16)}function d(){return s(32)}},9908:(e,t,r)=>{"use strict";r.d(t,{d:()=>n,p:()=>i});var n=r(7836).ee.get("handle");function i(e,t,r,i,o){o?(o.buffer([e],i),o.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}}},n={};function i(e){var t=n[e];if(void 0!==t)return t.exports;var o=n[e]={exports:{}};return r[e](o,o.exports,i),o.exports}i.m=r,i.d=(e,t)=>{for(var r in t)i.o(t,r)&&!i.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},i.f={},i.e=e=>Promise.all(Object.keys(i.f).reduce((t,r)=>(i.f[r](e,t),t),[])),i.u=e=>({95:"nr-full-compressor",222:"nr-full-recorder",891:"nr-full"}[e]+"-1.303.0.min.js"),i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},t="NRBA-1.303.0.PROD:",i.l=(r,n,o,a)=>{if(e[r])e[r].push(n);else{var s,c;if(void 0!==o)for(var d=document.getElementsByTagName("script"),u=0;u<d.length;u++){var l=d[u];if(l.getAttribute("src")==r||l.getAttribute("data-webpack")==t+o){s=l;break}}if(!s){c=!0;var f={891:"sha512-NjTqL37sTIH4ScIjNMSN8m6Ynix4ZSYE49nDzHKiY6gYpNUuEOsC1/5QN5HnuxkYRqn2UlQDJVp4sxJyZEdGXA==",222:"sha512-0Y12t8M+YYLQtd24mGFaBCMEF/U0XGMH+5jVd//rR5jMLhAjTiUIGsby5zwArCbwpIU85j9WgCsn728Y4lf2NQ==",95:"sha512-3/nNcQ5eHnNm+Fc0f0wb/kotkbeU0ggV73r7XesXbR9XYUmBehQI//8iIWuBOFQRevQeyCf3b+bke4vD3EYVaw=="};(s=document.createElement("script")).charset="utf-8",i.nc&&s.setAttribute("nonce",i.nc),s.setAttribute("data-webpack",t+o),s.src=r,0!==s.src.indexOf(window.location.origin+"/")&&(s.crossOrigin="anonymous"),f[a]&&(s.integrity=f[a])}e[r]=[n];var h=(t,n)=>{s.onerror=s.onload=null,clearTimeout(g);var i=e[r];if(delete e[r],s.parentNode&&s.parentNode.removeChild(s),i&&i.forEach(e=>e(n)),t)return t(n)},g=setTimeout(h.bind(null,void 0,{type:"timeout",target:s}),12e4);s.onerror=h.bind(null,s.onerror),s.onload=h.bind(null,s.onload),c&&document.head.appendChild(s)}},i.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.p="https://js-agent.newrelic.com/",(()=>{var e={85:0,959:0};i.f.j=(t,r)=>{var n=i.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var o=new Promise((r,i)=>n=e[t]=[r,i]);r.push(n[2]=o);var a=i.p+i.u(t),s=new Error;i.l(a,r=>{if(i.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var o=r&&("load"===r.type?"missing":r.type),a=r&&r.target&&r.target.src;s.message="Loading chunk "+t+" failed.\n("+o+": "+a+")",s.name="ChunkLoadError",s.type=o,s.request=a,n[1](s)}},"chunk-"+t,t)}};var t=(t,r)=>{var n,o,[a,s,c]=r,d=0;if(a.some(t=>0!==e[t])){for(n in s)i.o(s,n)&&(i.m[n]=s[n]);if(c)c(i)}for(t&&t(r);d<a.length;d++)o=a[d],i.o(e,o)&&e[o]&&e[o][0](),e[o]=0},r=self["webpackChunk:NRBA-1.303.0.PROD"]=self["webpackChunk:NRBA-1.303.0.PROD"]||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})(),(()=>{"use strict";i(8374);var e=i(9566),t=i(1741);class r extends t.W{agentIdentifier=(0,e.LA)(16)}var n=i(860);const o=Object.values(n.K7);var a=i(5205);var s=i(9908),c=i(1863),d=i(4261),u=i(3241),l=i(944),f=i(5701),h=i(8154);function g(e,t,i,o){const a=o||i;!a||a[e]&&a[e]!==r.prototype[e]||(a[e]=function(){(0,s.p)(h.xV,["API/"+e+"/called"],void 0,n.K7.metrics,i.ee),(0,u.W)({agentIdentifier:i.agentIdentifier,drained:!!f.B?.[i.agentIdentifier],type:"data",name:"api",feature:d.Pl+e,data:{}});try{return t.apply(this,arguments)}catch(e){(0,l.R)(23,e)}})}function p(e,t,r,n,i){const o=e.info;null===r?delete o.jsAttributes[t]:o.jsAttributes[t]=r,(i||null===r)&&(0,s.p)(d.Pl+n,[(0,c.t)(),t,r],void 0,"session",e.ee)}var m=i(1687),v=i(4234),b=i(5289),y=i(6154),R=i(5270),w=i(7767),x=i(6389),T=i(7699);class _ extends v.W{constructor(e,t){super(e.agentIdentifier,t),this.agentRef=e,this.abortHandler=void 0,this.featAggregate=void 0,this.loadedSuccessfully=void 0,this.onAggregateImported=new Promise(e=>{this.loadedSuccessfully=e}),this.deferred=Promise.resolve(),!1===e.init[this.featureName].autoStart?this.deferred=new Promise((t,r)=>{this.ee.on("manual-start-all",(0,x.J)(()=>{(0,m.Ak)(e.agentIdentifier,this.featureName),t()}))}):(0,m.Ak)(e.agentIdentifier,t)}importAggregator(e,t,r={}){if(this.featAggregate)return;const n=async()=>{let n;await this.deferred;try{if((0,w.V)(e.init)){const{setupAgentSession:t}=await i.e(891).then(i.bind(i,8766));n=t(e)}}catch(e){(0,l.R)(20,e),this.ee.emit("internal-error",[e]),(0,s.p)(T.qh,[e],void 0,this.featureName,this.ee)}try{if(!this.#t(this.featureName,n,e.init))return(0,m.Ze)(this.agentIdentifier,this.featureName),void this.loadedSuccessfully(!1);const{Aggregate:i}=await t();this.featAggregate=new i(e,r),e.runtime.harvester.initializedAggregates.push(this.featAggregate),this.loadedSuccessfully(!0)}catch(e){(0,l.R)(34,e),this.abortHandler?.(),(0,m.Ze)(this.agentIdentifier,this.featureName,!0),this.loadedSuccessfully(!1),this.ee&&this.ee.abort()}};y.RI?(0,b.GG)(()=>n(),!0):n()}#t(e,t,r){if(this.blocked)return!1;switch(e){case n.K7.sessionReplay:return(0,R.SR)(r)&&!!t;case n.K7.sessionTrace:return!!t;default:return!0}}}var E=i(6630),S=i(2614);class A extends _{static featureName=E.T;constructor(e){var t;super(e,E.T),this.setupInspectionEvents(e.agentIdentifier),t=e,g(d.Fw,function(e,r){"string"==typeof e&&("/"!==e.charAt(0)&&(e="/"+e),t.runtime.customTransaction=(r||"http://custom.transaction")+e,(0,s.p)(d.Pl+d.Fw,[(0,c.t)()],void 0,void 0,t.ee))},t),this.importAggregator(e,()=>i.e(891).then(i.bind(i,7550)))}setupInspectionEvents(e){const t=(t,r)=>{t&&(0,u.W)({agentIdentifier:e,timeStamp:t.timeStamp,loaded:"complete"===t.target.readyState,type:"window",name:r,data:t.target.location+""})};(0,b.sB)(e=>{t(e,"DOMContentLoaded")}),(0,b.GG)(e=>{t(e,"load")}),(0,b.Qr)(e=>{t(e,"navigate")}),this.ee.on(S.tS.UPDATE,(t,r)=>{(0,u.W)({agentIdentifier:e,type:"lifecycle",name:"session",data:r})})}}var O=i(384);var N=i(2843),I=i(3878),P=i(782);class k extends _{static featureName=P.T;constructor(e){super(e,P.T),y.RI&&((0,N.u)(()=>(0,s.p)("docHidden",[(0,c.t)()],void 0,P.T,this.ee),!0),(0,I.sp)("pagehide",()=>(0,s.p)("winPagehide",[(0,c.t)()],void 0,P.T,this.ee)),this.importAggregator(e,()=>i.e(891).then(i.bind(i,9917))))}}class j extends _{static featureName=h.TZ;constructor(e){super(e,h.TZ),y.RI&&document.addEventListener("securitypolicyviolation",e=>{(0,s.p)(h.xV,["Generic/CSPViolation/Detected"],void 0,this.featureName,this.ee)}),this.importAggregator(e,()=>i.e(891).then(i.bind(i,6555)))}}var C=i(6774),L=i(3304);class H{constructor(e,t,r,n,i){this.name="UncaughtError",this.message="string"==typeof e?e:(0,L.A)(e),this.sourceURL=t,this.line=r,this.column=n,this.__newrelic=i}}function M(e){return B(e)?e:new H(void 0!==e?.message?e.message:e,e?.filename||e?.sourceURL,e?.lineno||e?.line,e?.colno||e?.col,e?.__newrelic,e?.cause)}function K(e){const t="Unhandled Promise Rejection: ";if(!e?.reason)return;if(B(e.reason)){try{e.reason.message.startsWith(t)||(e.reason.message=t+e.reason.message)}catch(e){}return M(e.reason)}const r=M(e.reason);return(r.message||"").startsWith(t)||(r.message=t+r.message),r}function D(e){if(e.error instanceof SyntaxError&&!/:\d+$/.test(e.error.stack?.trim())){const t=new H(e.message,e.filename,e.lineno,e.colno,e.error.__newrelic,e.cause);return t.name=SyntaxError.name,t}return B(e.error)?e.error:M(e)}function B(e){return e instanceof Error&&!!e.stack}function W(e,t,r,i,o=(0,c.t)()){"string"==typeof e&&(e=new Error(e)),(0,s.p)("err",[e,o,!1,t,r.runtime.isRecording,void 0,i],void 0,n.K7.jserrors,r.ee),(0,s.p)("uaErr",[],void 0,n.K7.genericEvents,r.ee)}var F=i(4387),U=i(993),V=i(3785);function G(e,{customAttributes:t={},level:r=U.p_.INFO}={},n,i,o=(0,c.t)()){(0,V.R)(n.ee,e,t,r,i,o)}function z(e,t,r,i,o=(0,c.t)()){(0,s.p)(d.Pl+d.hG,[o,e,t,i],void 0,n.K7.genericEvents,r.ee)}function Z(e,t,r,i,o=(0,c.t)()){const{start:a,end:u,customAttributes:f}=t||{},h={customAttributes:f||{}};if("object"!=typeof h.customAttributes||"string"!=typeof e||0===e.length)return void(0,l.R)(57);const g=(e,t)=>null==e?t:"number"==typeof e?e:e instanceof PerformanceMark?e.startTime:Number.NaN;if(h.start=g(a,0),h.end=g(u,o),Number.isNaN(h.start)||Number.isNaN(h.end))(0,l.R)(57);else{if(h.duration=h.end-h.start,!(h.duration<0))return(0,s.p)(d.Pl+d.V1,[h,e,i],void 0,n.K7.genericEvents,r.ee),h;(0,l.R)(58)}}function q(e,t={},r,i,o=(0,c.t)()){(0,s.p)(d.Pl+d.fF,[o,e,t,i],void 0,n.K7.genericEvents,r.ee)}function X(e){g(d.eY,function(t){return Y(e,t)},e)}function Y(e,t,r){const i={};(0,l.R)(54,"newrelic.register"),t||={},t.eventSource="MicroFrontendBrowserAgent",t.licenseKey||=e.info.licenseKey,t.blocked=!1,t.parent=r||{};let o=()=>{};const a=e.runtime.registeredEntities,d=a.find(({metadata:{target:{id:e,name:r}}})=>e===t.id);if(d)return d.metadata.target.name!==t.name&&(d.metadata.target.name=t.name),d;const u=e=>{t.blocked=!0,o=e};e.init.api.allow_registered_children||u((0,x.J)(()=>(0,l.R)(55))),(0,F.c7)(t)||u((0,x.J)(()=>(0,l.R)(48,t))),(0,F.yo)(t.id)&&(0,F.yo)(t.name)||u((0,x.J)(()=>(0,l.R)(48,t)));const f={addPageAction:(r,n={})=>m(z,[r,{...i,...n},e],t),log:(r,n={})=>m(G,[r,{...n,customAttributes:{...i,...n.customAttributes||{}}},e],t),measure:(r,n={})=>m(Z,[r,{...n,customAttributes:{...i,...n.customAttributes||{}}},e],t),noticeError:(r,n={})=>m(W,[r,{...i,...n},e],t),register:(t={})=>m(Y,[e,t],f.metadata.target),recordCustomEvent:(r,n={})=>m(q,[r,{...i,...n},e],t),setApplicationVersion:e=>p("application.version",e),setCustomAttribute:(e,t)=>p(e,t),setUserId:e=>p("enduser.id",e),metadata:{customAttributes:i,target:t}},g=()=>(t.blocked&&o(),t.blocked);g()||a.push(f);const p=(e,t)=>{g()||(i[e]=t)},m=(t,r,i)=>{if(g())return;const o=(0,c.t)();(0,s.p)(h.xV,["API/register/".concat(t.name,"/called")],void 0,n.K7.metrics,e.ee);try{return e.init.api.duplicate_registered_data&&"register"!==t.name&&t(...r,void 0,o),t(...r,i,o)}catch(e){(0,l.R)(50,e)}};return f}class J extends _{static featureName=C.T;constructor(e){var t;super(e,C.T),t=e,g(d.o5,(e,r)=>W(e,r,t),t),function(e){g(d.bt,function(t){e.runtime.onerror=t},e)}(e),function(e){let t=0;g(d.k6,function(e,r){++t>10||(this.runtime.releaseIds[e.slice(-200)]=(""+r).slice(-200))},e)}(e),X(e);try{this.removeOnAbort=new AbortController}catch(e){}this.ee.on("internal-error",(t,r)=>{this.abortHandler&&(0,s.p)("ierr",[M(t),(0,c.t)(),!0,{},e.runtime.isRecording,r],void 0,this.featureName,this.ee)}),y.gm.addEventListener("unhandledrejection",t=>{this.abortHandler&&(0,s.p)("err",[K(t),(0,c.t)(),!1,{unhandledPromiseRejection:1},e.runtime.isRecording],void 0,this.featureName,this.ee)},(0,I.jT)(!1,this.removeOnAbort?.signal)),y.gm.addEventListener("error",t=>{this.abortHandler&&(0,s.p)("err",[D(t),(0,c.t)(),!1,{},e.runtime.isRecording],void 0,this.featureName,this.ee)},(0,I.jT)(!1,this.removeOnAbort?.signal)),this.abortHandler=this.#r,this.importAggregator(e,()=>i.e(891).then(i.bind(i,2176)))}#r(){this.removeOnAbort?.abort(),this.abortHandler=void 0}}var Q=i(8990);let ee=1;function te(e){const t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===y.gm?0:(0,Q.I)(e,"nr@id",function(){return ee++})}function re(e){if("string"==typeof e&&e.length)return e.length;if("object"==typeof e){if("undefined"!=typeof ArrayBuffer&&e instanceof ArrayBuffer&&e.byteLength)return e.byteLength;if("undefined"!=typeof Blob&&e instanceof Blob&&e.size)return e.size;if(!("undefined"!=typeof FormData&&e instanceof FormData))try{return(0,L.A)(e).length}catch(e){return}}}var ne=i(8139),ie=i(7836),oe=i(3434);const ae={},se=["open","send"];function ce(e){var t=e||ie.ee;const r=function(e){return(e||ie.ee).get("xhr")}(t);if(void 0===y.gm.XMLHttpRequest)return r;if(ae[r.debugId]++)return r;ae[r.debugId]=1,(0,ne.u)(t);var n=(0,oe.YM)(r),i=y.gm.XMLHttpRequest,o=y.gm.MutationObserver,a=y.gm.Promise,s=y.gm.setInterval,c="readystatechange",d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],u=[],f=y.gm.XMLHttpRequest=function(e){const t=new i(e),o=r.context(t);try{r.emit("new-xhr",[t],o),t.addEventListener(c,(a=o,function(){var e=this;e.readyState>3&&!a.resolved&&(a.resolved=!0,r.emit("xhr-resolved",[],e)),n.inPlace(e,d,"fn-",b)}),(0,I.jT)(!1))}catch(e){(0,l.R)(15,e);try{r.emit("internal-error",[e])}catch(e){}}var a;return t};function h(e,t){n.inPlace(t,["onreadystatechange"],"fn-",b)}if(function(e,t){for(var r in e)t[r]=e[r]}(i,f),f.prototype=i.prototype,n.inPlace(f.prototype,se,"-xhr-",b),r.on("send-xhr-start",function(e,t){h(e,t),function(e){u.push(e),o&&(g?g.then(v):s?s(v):(p=-p,m.data=p))}(t)}),r.on("open-xhr-start",h),o){var g=a&&a.resolve();if(!s&&!a){var p=1,m=document.createTextNode(p);new o(v).observe(m,{characterData:!0})}}else t.on("fn-end",function(e){e[0]&&e[0].type===c||v()});function v(){for(var e=0;e<u.length;e++)h(0,u[e]);u.length&&(u=[])}function b(e,t){return t}return r}var de="fetch-",ue=de+"body-",le=["arrayBuffer","blob","json","text","formData"],fe=y.gm.Request,he=y.gm.Response,ge="prototype";const pe={};function me(e){const t=function(e){return(e||ie.ee).get("fetch")}(e);if(!(fe&&he&&y.gm.fetch))return t;if(pe[t.debugId]++)return t;function r(e,r,n){var i=e[r];"function"==typeof i&&(e[r]=function(){var e,r=[...arguments],o={};t.emit(n+"before-start",[r],o),o[ie.P]&&o[ie.P].dt&&(e=o[ie.P].dt);var a=i.apply(this,r);return t.emit(n+"start",[r,e],a),a.then(function(e){return t.emit(n+"end",[null,e],a),e},function(e){throw t.emit(n+"end",[e],a),e})})}return pe[t.debugId]=1,le.forEach(e=>{r(fe[ge],e,ue),r(he[ge],e,ue)}),r(y.gm,"fetch",de),t.on(de+"end",function(e,r){var n=this;if(r){var i=r.headers.get("content-length");null!==i&&(n.rxSize=i),t.emit(de+"done",[null,r],n)}else t.emit(de+"done",[e],n)}),t}var ve=i(7485);class be{constructor(e){this.agentRef=e}generateTracePayload(t){const r=this.agentRef.loader_config;if(!this.shouldGenerateTrace(t)||!r)return null;var n=(r.accountID||"").toString()||null,i=(r.agentID||"").toString()||null,o=(r.trustKey||"").toString()||null;if(!n||!i)return null;var a=(0,e.ZF)(),s=(0,e.el)(),c=Date.now(),d={spanId:a,traceId:s,timestamp:c};return(t.sameOrigin||this.isAllowedOrigin(t)&&this.useTraceContextHeadersForCors())&&(d.traceContextParentHeader=this.generateTraceContextParentHeader(a,s),d.traceContextStateHeader=this.generateTraceContextStateHeader(a,c,n,i,o)),(t.sameOrigin&&!this.excludeNewrelicHeader()||!t.sameOrigin&&this.isAllowedOrigin(t)&&this.useNewrelicHeaderForCors())&&(d.newrelicHeader=this.generateTraceHeader(a,s,c,n,i,o)),d}generateTraceContextParentHeader(e,t){return"00-"+t+"-"+e+"-01"}generateTraceContextStateHeader(e,t,r,n,i){return i+"@nr=0-1-"+r+"-"+n+"-"+e+"----"+t}generateTraceHeader(e,t,r,n,i,o){if(!("function"==typeof y.gm?.btoa))return null;var a={v:[0,1],d:{ty:"Browser",ac:n,ap:i,id:e,tr:t,ti:r}};return o&&n!==o&&(a.d.tk=o),btoa((0,L.A)(a))}shouldGenerateTrace(e){return this.agentRef.init?.distributed_tracing?.enabled&&this.isAllowedOrigin(e)}isAllowedOrigin(e){var t=!1;const r=this.agentRef.init?.distributed_tracing;if(e.sameOrigin)t=!0;else if(r?.allowed_origins instanceof Array)for(var n=0;n<r.allowed_origins.length;n++){var i=(0,ve.D)(r.allowed_origins[n]);if(e.hostname===i.hostname&&e.protocol===i.protocol&&e.port===i.port){t=!0;break}}return t}excludeNewrelicHeader(){var e=this.agentRef.init?.distributed_tracing;return!!e&&!!e.exclude_newrelic_header}useNewrelicHeaderForCors(){var e=this.agentRef.init?.distributed_tracing;return!!e&&!1!==e.cors_use_newrelic_header}useTraceContextHeadersForCors(){var e=this.agentRef.init?.distributed_tracing;return!!e&&!!e.cors_use_tracecontext_headers}}var ye=i(9300),Re=i(7295);function we(e){return"string"==typeof e?e:e instanceof(0,O.dV)().o.REQ?e.url:y.gm?.URL&&e instanceof URL?e.href:void 0}var xe=["load","error","abort","timeout"],Te=xe.length,_e=(0,O.dV)().o.REQ,Ee=(0,O.dV)().o.XHR;const Se="X-NewRelic-App-Data";class Ae extends _{static featureName=ye.T;constructor(e){super(e,ye.T),this.dt=new be(e),this.handler=(e,t,r,n)=>(0,s.p)(e,t,r,n,this.ee);try{const e={xmlhttprequest:"xhr",fetch:"fetch",beacon:"beacon"};y.gm?.performance?.getEntriesByType("resource").forEach(t=>{if(t.initiatorType in e&&0!==t.responseStatus){const r={status:t.responseStatus},i={rxSize:t.transferSize,duration:Math.floor(t.duration),cbTime:0};Oe(r,t.name),this.handler("xhr",[r,i,t.startTime,t.responseEnd,e[t.initiatorType]],void 0,n.K7.ajax)}})}catch(e){}me(this.ee),ce(this.ee),function(e,t,r,i){function o(e){var t=this;t.totalCbs=0,t.called=0,t.cbTime=0,t.end=_,t.ended=!1,t.xhrGuids={},t.lastSize=null,t.loadCaptureCalled=!1,t.params=this.params||{},t.metrics=this.metrics||{},t.latestLongtaskEnd=0,e.addEventListener("load",function(r){E(t,e)},(0,I.jT)(!1)),y.lR||e.addEventListener("progress",function(e){t.lastSize=e.loaded},(0,I.jT)(!1))}function a(e){this.params={method:e[0]},Oe(this,e[1]),this.metrics={}}function d(t,r){e.loader_config.xpid&&this.sameOrigin&&r.setRequestHeader("X-NewRelic-ID",e.loader_config.xpid);var n=i.generateTracePayload(this.parsedOrigin);if(n){var o=!1;n.newrelicHeader&&(r.setRequestHeader("newrelic",n.newrelicHeader),o=!0),n.traceContextParentHeader&&(r.setRequestHeader("traceparent",n.traceContextParentHeader),n.traceContextStateHeader&&r.setRequestHeader("tracestate",n.traceContextStateHeader),o=!0),o&&(this.dt=n)}}function u(e,r){var n=this.metrics,i=e[0],o=this;if(n&&i){var a=re(i);a&&(n.txSize=a)}this.startTime=(0,c.t)(),this.body=i,this.listener=function(e){try{"abort"!==e.type||o.loadCaptureCalled||(o.params.aborted=!0),("load"!==e.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof r.onload)&&"function"==typeof o.end)&&o.end(r)}catch(e){try{t.emit("internal-error",[e])}catch(e){}}};for(var s=0;s<Te;s++)r.addEventListener(xe[s],this.listener,(0,I.jT)(!1))}function l(e,t,r){this.cbTime+=e,t?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof r.onload||"function"!=typeof this.end||this.end(r)}function f(e,t){var r=""+te(e)+!!t;this.xhrGuids&&!this.xhrGuids[r]&&(this.xhrGuids[r]=!0,this.totalCbs+=1)}function g(e,t){var r=""+te(e)+!!t;this.xhrGuids&&this.xhrGuids[r]&&(delete this.xhrGuids[r],this.totalCbs-=1)}function p(){this.endTime=(0,c.t)()}function m(e,r){r instanceof Ee&&"load"===e[0]&&t.emit("xhr-load-added",[e[1],e[2]],r)}function v(e,r){r instanceof Ee&&"load"===e[0]&&t.emit("xhr-load-removed",[e[1],e[2]],r)}function b(e,t,r){t instanceof Ee&&("onload"===r&&(this.onload=!0),("load"===(e[0]&&e[0].type)||this.onload)&&(this.xhrCbStart=(0,c.t)()))}function R(e,r){this.xhrCbStart&&t.emit("xhr-cb-time",[(0,c.t)()-this.xhrCbStart,this.onload,r],r)}function w(e){var t,r=e[1]||{};if("string"==typeof e[0]?0===(t=e[0]).length&&y.RI&&(t=""+y.gm.location.href):e[0]&&e[0].url?t=e[0].url:y.gm?.URL&&e[0]&&e[0]instanceof URL?t=e[0].href:"function"==typeof e[0].toString&&(t=e[0].toString()),"string"==typeof t&&0!==t.length){t&&(this.parsedOrigin=(0,ve.D)(t),this.sameOrigin=this.parsedOrigin.sameOrigin);var n=i.generateTracePayload(this.parsedOrigin);if(n&&(n.newrelicHeader||n.traceContextParentHeader))if(e[0]&&e[0].headers)s(e[0].headers,n)&&(this.dt=n);else{var o={};for(var a in r)o[a]=r[a];o.headers=new Headers(r.headers||{}),s(o.headers,n)&&(this.dt=n),e.length>1?e[1]=o:e.push(o)}}function s(e,t){var r=!1;return t.newrelicHeader&&(e.set("newrelic",t.newrelicHeader),r=!0),t.traceContextParentHeader&&(e.set("traceparent",t.traceContextParentHeader),t.traceContextStateHeader&&e.set("tracestate",t.traceContextStateHeader),r=!0),r}}function x(e,t){this.params={},this.metrics={},this.startTime=(0,c.t)(),this.dt=t,e.length>=1&&(this.target=e[0]),e.length>=2&&(this.opts=e[1]);var r=this.opts||{},n=this.target;Oe(this,we(n));var i=(""+(n&&n instanceof _e&&n.method||r.method||"GET")).toUpperCase();this.params.method=i,this.body=r.body,this.txSize=re(r.body)||0}function T(e,t){if(this.endTime=(0,c.t)(),this.params||(this.params={}),(0,Re.iW)(this.params))return;let i;this.params.status=t?t.status:0,"string"==typeof this.rxSize&&this.rxSize.length>0&&(i=+this.rxSize);const o={txSize:this.txSize,rxSize:i,duration:(0,c.t)()-this.startTime};r("xhr",[this.params,o,this.startTime,this.endTime,"fetch"],this,n.K7.ajax)}function _(e){const t=this.params,i=this.metrics;if(!this.ended){this.ended=!0;for(let t=0;t<Te;t++)e.removeEventListener(xe[t],this.listener,!1);t.aborted||(0,Re.iW)(t)||(i.duration=(0,c.t)()-this.startTime,this.loadCaptureCalled||4!==e.readyState?null==t.status&&(t.status=0):E(this,e),i.cbTime=this.cbTime,r("xhr",[t,i,this.startTime,this.endTime,"xhr"],this,n.K7.ajax))}}function E(e,r){e.params.status=r.status;var i=function(e,t){var r=e.responseType;return"json"===r&&null!==t?t:"arraybuffer"===r||"blob"===r||"json"===r?re(e.response):"text"===r||""===r||void 0===r?re(e.responseText):void 0}(r,e.lastSize);if(i&&(e.metrics.rxSize=i),e.sameOrigin&&r.getAllResponseHeaders().indexOf(Se)>=0){var o=r.getResponseHeader(Se);o&&((0,s.p)(h.rs,["Ajax/CrossApplicationTracing/Header/Seen"],void 0,n.K7.metrics,t),e.params.cat=o.split(", ").pop())}e.loadCaptureCalled=!0}t.on("new-xhr",o),t.on("open-xhr-start",a),t.on("open-xhr-end",d),t.on("send-xhr-start",u),t.on("xhr-cb-time",l),t.on("xhr-load-added",f),t.on("xhr-load-removed",g),t.on("xhr-resolved",p),t.on("addEventListener-end",m),t.on("removeEventListener-end",v),t.on("fn-end",R),t.on("fetch-before-start",w),t.on("fetch-start",x),t.on("fn-start",b),t.on("fetch-done",T)}(e,this.ee,this.handler,this.dt),this.importAggregator(e,()=>i.e(891).then(i.bind(i,3845)))}}function Oe(e,t){var r=(0,ve.D)(t),n=e.params||e;n.hostname=r.hostname,n.port=r.port,n.protocol=r.protocol,n.host=r.hostname+":"+r.port,n.pathname=r.pathname,e.parsedOrigin=r,e.sameOrigin=r.sameOrigin}const Ne={},Ie=["pushState","replaceState"];function Pe(e){const t=function(e){return(e||ie.ee).get("history")}(e);return!y.RI||Ne[t.debugId]++||(Ne[t.debugId]=1,(0,oe.YM)(t).inPlace(window.history,Ie,"-")),t}var ke=i(3738);function je(e){g(d.BL,function(t=Date.now()){const r=t-y.WN;r<0&&(0,l.R)(62,t),(0,s.p)(h.XG,[d.BL,{time:r}],void 0,n.K7.metrics,e.ee),e.addToTrace({name:d.BL,start:t,origin:"nr"}),(0,s.p)(d.Pl+d.hG,[r,d.BL],void 0,n.K7.genericEvents,e.ee)},e)}const{He:Ce,bD:Le,d3:He,Kp:Me,TZ:Ke,Lc:De,uP:Be,Rz:We}=ke;class Fe extends _{static featureName=Ke;constructor(e){var t;super(e,Ke),t=e,g(d.U2,function(e){if(!(e&&"object"==typeof e&&e.name&&e.start))return;const r={n:e.name,s:e.start-y.WN,e:(e.end||e.start)-y.WN,o:e.origin||"",t:"api"};r.s<0||r.e<0||r.e<r.s?(0,l.R)(61,{start:r.s,end:r.e}):(0,s.p)("bstApi",[r],void 0,n.K7.sessionTrace,t.ee)},t),je(e);if(!(0,w.V)(e.init))return void this.deregisterDrain();const r=this.ee;let o;Pe(r),this.eventsEE=(0,ne.u)(r),this.eventsEE.on(Be,function(e,t){this.bstStart=(0,c.t)()}),this.eventsEE.on(De,function(e,t){(0,s.p)("bst",[e[0],t,this.bstStart,(0,c.t)()],void 0,n.K7.sessionTrace,r)}),r.on(We+He,function(e){this.time=(0,c.t)(),this.startPath=location.pathname+location.hash}),r.on(We+Me,function(e){(0,s.p)("bstHist",[location.pathname+location.hash,this.startPath,this.time],void 0,n.K7.sessionTrace,r)});try{o=new PerformanceObserver(e=>{const t=e.getEntries();(0,s.p)(Ce,[t],void 0,n.K7.sessionTrace,r)}),o.observe({type:Le,buffered:!0})}catch(e){}this.importAggregator(e,()=>i.e(891).then(i.bind(i,6974)),{resourceObserver:o})}}var Ue=i(6344);class Ve extends _{static featureName=Ue.TZ;#n;recorder;constructor(e){var t;let r;super(e,Ue.TZ),t=e,g(d.CH,function(){(0,s.p)(d.CH,[],void 0,n.K7.sessionReplay,t.ee)},t),function(e){g(d.Tb,function(){(0,s.p)(d.Tb,[],void 0,n.K7.sessionReplay,e.ee)},e)}(e);try{r=JSON.parse(localStorage.getItem("".concat(S.H3,"_").concat(S.uh)))}catch(e){}(0,R.SR)(e.init)&&this.ee.on(d.CH,()=>this.#i()),this.#o(r)&&this.importRecorder().then(e=>{e.startRecording(Ue.Qb.PRELOAD,r?.sessionReplayMode)}),this.importAggregator(this.agentRef,()=>i.e(891).then(i.bind(i,6167)),this),this.ee.on("err",e=>{this.blocked||this.agentRef.runtime.isRecording&&(this.errorNoticed=!0,(0,s.p)(Ue.Vh,[e],void 0,this.featureName,this.ee))})}#o(e){return e&&(e.sessionReplayMode===S.g.FULL||e.sessionReplayMode===S.g.ERROR)||(0,R.Aw)(this.agentRef.init)}importRecorder(){return this.recorder?Promise.resolve(this.recorder):(this.#n??=Promise.all([i.e(891),i.e(222)]).then(i.bind(i,4866)).then(({Recorder:e})=>(this.recorder=new e(this),this.recorder)).catch(e=>{throw this.ee.emit("internal-error",[e]),this.blocked=!0,e}),this.#n)}#i(){this.blocked||(this.featAggregate?this.featAggregate.mode!==S.g.FULL&&this.featAggregate.initializeRecording(S.g.FULL,!0,Ue.Qb.API):this.importRecorder().then(()=>{this.recorder.startRecording(Ue.Qb.API,S.g.FULL)}))}}var Ge=i(3333);class ze extends _{static featureName=Ge.TZ;constructor(e){super(e,Ge.TZ);const t=[e.init.page_action.enabled,e.init.performance.capture_marks,e.init.performance.capture_measures,e.init.user_actions.enabled,e.init.performance.resources.enabled];var r;r=e,g(d.hG,(e,t)=>z(e,t,r),r),function(e){g(d.fF,(t,r)=>q(t,r,e),e)}(e),je(e),X(e),function(e){g(d.V1,(t,r)=>Z(t,r,e),e)}(e);const o=e.init.feature_flags.includes("user_frustrations");let a;if(y.RI&&o&&(me(this.ee),ce(this.ee),a=Pe(this.ee)),y.RI){if(e.init.user_actions.enabled&&(Ge.Zp.forEach(e=>(0,I.sp)(e,e=>(0,s.p)("ua",[e],void 0,this.featureName,this.ee),!0)),Ge.qN.forEach(e=>{const t=(0,x.s)(e=>{(0,s.p)("ua",[e],void 0,this.featureName,this.ee)},500,{leading:!0});(0,I.sp)(e,t)}),o)){function c(t){const r=(0,ve.D)(t);return e.beacons.includes(r.hostname+":"+r.port)}function u(){a.emit("navChange")}y.gm.addEventListener("error",()=>{(0,s.p)("uaErr",[],void 0,n.K7.genericEvents,this.ee)},(0,I.jT)(!1,this.removeOnAbort?.signal)),this.ee.on("open-xhr-start",(e,t)=>{c(e[1])||t.addEventListener("readystatechange",()=>{2===t.readyState&&(0,s.p)("uaXhr",[],void 0,n.K7.genericEvents,this.ee)})}),this.ee.on("fetch-start",e=>{e.length>=1&&!c(we(e[0]))&&(0,s.p)("uaXhr",[],void 0,n.K7.genericEvents,this.ee)}),a.on("pushState-end",u),a.on("replaceState-end",u),window.addEventListener("hashchange",u,(0,I.jT)(!0,this.removeOnAbort?.signal)),window.addEventListener("popstate",u,(0,I.jT)(!0,this.removeOnAbort?.signal))}if(e.init.performance.resources.enabled&&y.gm.PerformanceObserver?.supportedEntryTypes.includes("resource")){new PerformanceObserver(e=>{e.getEntries().forEach(e=>{(0,s.p)("browserPerformance.resource",[e],void 0,this.featureName,this.ee)})}).observe({type:"resource",buffered:!0})}}try{this.removeOnAbort=new AbortController}catch(l){}this.abortHandler=()=>{this.removeOnAbort?.abort(),this.abortHandler=void 0},t.some(e=>e)?this.importAggregator(e,()=>i.e(891).then(i.bind(i,8019))):this.deregisterDrain()}}var Ze=i(2646);const qe=new Map;function Xe(e,t,r,n){if("object"!=typeof t||!t||"string"!=typeof r||!r||"function"!=typeof t[r])return(0,l.R)(29);const i=function(e){return(e||ie.ee).get("logger")}(e),o=(0,oe.YM)(i),a=new Ze.y(ie.P);a.level=n.level,a.customAttributes=n.customAttributes;const s=t[r]?.[oe.Jt]||t[r];return qe.set(s,a),o.inPlace(t,[r],"wrap-logger-",()=>qe.get(s)),i}var Ye=i(1910);class Je extends _{static featureName=U.TZ;constructor(e){var t;super(e,U.TZ),t=e,g(d.$9,(e,r)=>G(e,r,t),t),function(e){g(d.Wb,(t,r,{customAttributes:n={},level:i=U.p_.INFO}={})=>{Xe(e.ee,t,r,{customAttributes:n,level:i})},e)}(e),X(e);const r=this.ee;["log","error","warn","info","debug","trace"].forEach(e=>{(0,Ye.i)(y.gm.console[e]),Xe(r,y.gm.console,e,{level:"log"===e?"info":e})}),this.ee.on("wrap-logger-end",function([e]){const{level:t,customAttributes:n}=this;(0,V.R)(r,e,n,t)}),this.importAggregator(e,()=>i.e(891).then(i.bind(i,5288)))}}new class extends r{constructor(e){var t;(super(),y.gm)?(this.features={},(0,O.bQ)(this.agentIdentifier,this),this.desiredFeatures=new Set(e.features||[]),this.desiredFeatures.add(A),this.runSoftNavOverSpa=[...this.desiredFeatures].some(e=>e.featureName===n.K7.softNav),(0,a.j)(this,e,e.loaderType||"agent"),t=this,g(d.cD,function(e,r,n=!1){if("string"==typeof e){if(["string","number","boolean"].includes(typeof r)||null===r)return p(t,e,r,d.cD,n);(0,l.R)(40,typeof r)}else(0,l.R)(39,typeof e)},t),function(e){g(d.Dl,function(t){if("string"==typeof t||null===t)return p(e,"enduser.id",t,d.Dl,!0);(0,l.R)(41,typeof t)},e)}(this),function(e){g(d.nb,function(t){if("string"==typeof t||null===t)return p(e,"application.version",t,d.nb,!1);(0,l.R)(42,typeof t)},e)}(this),function(e){g(d.d3,function(){e.ee.emit("manual-start-all")},e)}(this),function(e){g(d.Pv,function(t=!0){if("boolean"==typeof t){if((0,s.p)(d.Pl+d.Pv,[t],void 0,"session",e.ee),e.runtime.consented=t,t){const t=e.features.page_view_event;t.onAggregateImported.then(e=>{const r=t.featAggregate;e&&!r.sentRum&&r.sendRum()})}}else(0,l.R)(65,typeof t)},e)}(this),this.run()):(0,l.R)(21)}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}get api(){return this}run(){try{const e=function(e){const t={};return o.forEach(r=>{t[r]=!!e[r]?.enabled}),t}(this.init),t=[...this.desiredFeatures];t.sort((e,t)=>n.P3[e.featureName]-n.P3[t.featureName]),t.forEach(t=>{if(!e[t.featureName]&&t.featureName!==n.K7.pageViewEvent)return;if(this.runSoftNavOverSpa&&t.featureName===n.K7.spa)return;if(!this.runSoftNavOverSpa&&t.featureName===n.K7.softNav)return;const r=function(e){switch(e){case n.K7.ajax:return[n.K7.jserrors];case n.K7.sessionTrace:return[n.K7.ajax,n.K7.pageViewEvent];case n.K7.sessionReplay:return[n.K7.sessionTrace];case n.K7.pageViewTiming:return[n.K7.pageViewEvent];default:return[]}}(t.featureName).filter(e=>!(e in this.features));r.length>0&&(0,l.R)(36,{targetFeature:t.featureName,missingDependencies:r}),this.features[t.featureName]=new t(this)})}catch(e){(0,l.R)(22,e);for(const e in this.features)this.features[e].abortHandler?.();const t=(0,O.Zm)();delete t.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator;return t.ee.get(this.agentIdentifier).abort(),!1}}}({features:[A,k,Fe,Ve,Ae,j,J,ze,Je],loaderType:"pro"})})()})();</script><script>
+                  window.ddjskey = 'AC81AADC3279CA4C7B968B717FBB30';
+                  window.ddoptions = {
+                    ajaxListenerPath: true,
+                    endpoint: 'https://dd.idealista.pt/js/'
+                  };
+                </script>
+<script src="https://dd.idealista.pt/tags.js" async=""></script>
+<title>idealista — Moradias e apartamentos, arrendamento e venda, anúncios gratuitos</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Expires" content="1200">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="cleartype" content="on">
+<meta name="description" content="Estás à procura de casa? Com o idealista é fácil. Mais de um milhão de anúncios de apartamentos e casa à venda ou para arrendar. Publicar anúncios é grátis para particulares.">
+<meta name="Pragma" content="no-cache">
+<meta name="google-site-verification" content="">
+<script src="https://st3.idealista.pt/static/common/js/lib/jquery/jquery-1.12.4.js?20251127-1714" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, minimum-scale=1.0, user-scalable=1.0">
+<script src="https://st3.idealista.pt/static/vendors/react/react.production-18.3.1.js"></script>
+<script src="https://st3.idealista.pt/static/vendors/react/react-dom.production-18.3.1.js"></script>
+<script src="https://st3.idealista.pt/static/vendors/react/formatjs/react-intl-6.7.2.min.js"></script>
+<script src="https://st3.idealista.pt/static/common/release/mavericks/legacy/js/didomi/didomi-consent-lang.js" defer=""></script>
+<script src="https://st3.idealista.pt/static/common/release/mavericks/legacy/js/didomi/didomi-iab-integration.js" defer=""></script>
+<script src="https://st3.idealista.pt/static/common/release/mavericks/legacy/js/didomi/didomi-embed.js" defer=""></script>
+<link rel="shortcut icon" href="https://st3.idealista.pt/static/common/icons/favicon.ico?20251127-1714">
+<link rel="apple-touch-icon" sizes="32x32" href="https://st3.idealista.pt/static/common/icons/32x32.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" href="https://st3.idealista.pt/static/common/icons/32x32.png?20251127-1714">
+<link rel="apple-touch-icon" sizes="57x57" href="https://st3.idealista.pt/static/common/icons/57x57.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" href="https://st3.idealista.pt/static/common/icons/57x57.png?20251127-1714">
+<link rel="apple-touch-icon" href="https://st3.idealista.pt/static/common/icons/60x60.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" href="https://st3.idealista.pt/static/common/icons/60x60.png?20251127-1714">
+<link rel="apple-touch-icon" sizes="76x76" href="https://st3.idealista.pt/static/common/icons/76x76.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://st3.idealista.pt/static/common/icons/76x76.png?20251127-1714">
+<link rel="apple-touch-icon" sizes="96x96" href="https://st3.idealista.pt/static/common/icons/96x96.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" href="https://st3.idealista.pt/static/common/icons/96x96.png?20251127-1714">
+<link rel="apple-touch-icon" sizes="120x120" href="https://st3.idealista.pt/static/common/icons/120x120.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://st3.idealista.pt/static/common/icons/120x120.png?20251127-1714">
+<link rel="apple-touch-icon" sizes="128x128" href="https://st3.idealista.pt/static/common/icons/128x128.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" href="https://st3.idealista.pt/static/common/icons/128x128.png?20251127-1714">
+<link rel="apple-touch-icon" sizes="144x144" href="https://st3.idealista.pt/static/common/icons/144x144.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" href="https://st3.idealista.pt/static/common/icons/144x144.png?20251127-1714">
+<link rel="apple-touch-icon" sizes="152x152" href="https://st3.idealista.pt/static/common/icons/152x152.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://st3.idealista.pt/static/common/icons/152x152.png?20251127-1714">
+<link rel="apple-touch-icon" sizes="167x167" href="https://st3.idealista.pt/static/common/icons/167x167.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" href="https://st3.idealista.pt/static/common/icons/167x167.png?20251127-1714">
+<link rel="apple-touch-icon" sizes="180x180" href="https://st3.idealista.pt/static/common/icons/180x180.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" href="https://st3.idealista.pt/static/common/icons/180x180.png?20251127-1714">
+<link rel="apple-touch-icon" sizes="192x192" href="https://st3.idealista.pt/static/common/icons/192x192.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" href="https://st3.idealista.pt/static/common/icons/192x192.png?20251127-1714">
+<link rel="apple-touch-icon" sizes="195x195" href="https://st3.idealista.pt/static/common/icons/195x195.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" href="https://st3.idealista.pt/static/common/icons/195x195.png?20251127-1714">
+<link rel="apple-touch-icon" sizes="196x196" href="https://st3.idealista.pt/static/common/icons/196x196.png?20251127-1714">
+<link rel="apple-touch-icon-precomposed" href="https://st3.idealista.pt/static/common/icons/196x196.png?20251127-1714">
+<link rel="canonical" href="https://www.idealista.pt/">
+<link rel="stylesheet" href="https://st3.idealista.pt/static/react/shell/dist/assets/main.css?20251127-1714" type="text/css">
+<style>
+            .menu-wrapper {
+              --menu-max-width: 1280px;
+              --menu-height: 3rem;
+				@media screen and (min-width: 48rem) {
+         		 --menu-height: 4rem;
+            	}
+				@media screen and (min-width: 64rem) {
+         		 --menu-height: 6rem;
+            	}
+      		}
+          </style>
+<meta name="robots" content="noodp">
+<link rel="preload" as="style" href="https://st3.idealista.pt/static/common/release/home/home.css?20251127-1714" type="text/css">
+<link rel="stylesheet" href="https://st3.idealista.pt/static/common/release/home/home.css?20251127-1714" type="text/css">
+<link rel="preload" as="style" href="https://st3.idealista.pt/static/react/home/dist/main_ssr.css?20251127-1714" type="text/css">
+<link rel="stylesheet" href="https://st3.idealista.pt/static/react/home/dist/main_ssr.css?20251127-1714" type="text/css">
+<link rel="stylesheet" href="https://st3.idealista.pt/static/react/projects/loginAndRegister/dist/LoginInPlace.css?20251127-1714" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://st3.idealista.pt/static/react/projects/loginAndRegister/dist/LoginInPlace.css?20251127-1714"></noscript>
+<script>
+              var config = {
+                mediaTablet: 'screen and (max-device-width: 1023px) and (min-device-width: 767px), screen and (max-width: 1023px) and (min-width: 767px)',
+                mediaMobile: 'screen and (max-width: 767px)',
+                mediaDesktop: 'screen and (min-width: 1024px) and (min-device-width: 1024px)',
+                mediaLandscape: 'screen and (orientation: landscape)',
+              };
+			</script>
+<link rel="alternate" hreflang="x-default" href="https://www.idealista.pt/"><link rel="alternate" hreflang="en" href="https://www.idealista.pt/en/"><link rel="alternate" hreflang="es" href="https://www.idealista.pt/es/"><link rel="alternate" hreflang="fr" href="https://www.idealista.pt/fr/"><link rel="alternate" hreflang="de" href="https://www.idealista.pt/de/"><link rel="alternate" hreflang="it" href="https://www.idealista.pt/it/"><link rel="alternate" hreflang="da" href="https://www.idealista.pt/da/"><link rel="alternate" hreflang="fi" href="https://www.idealista.pt/fi/"><link rel="alternate" hreflang="no" href="https://www.idealista.pt/no/"><link rel="alternate" hreflang="nl" href="https://www.idealista.pt/nl/"><link rel="alternate" hreflang="pl" href="https://www.idealista.pt/pl/"><link rel="alternate" hreflang="ro" href="https://www.idealista.pt/ro/"><link rel="alternate" hreflang="ru" href="https://www.idealista.pt/ru/"><link rel="alternate" hreflang="sv" href="https://www.idealista.pt/sv/"><link rel="alternate" hreflang="el" href="https://www.idealista.pt/el/"><link rel="alternate" hreflang="zh" href="https://www.idealista.pt/zh/"><link rel="alternate" hreflang="uk" href="https://www.idealista.pt/uk/">
+<link rel="preload" href="https://st3.idealista.pt/static/common/release/modules/resources/fonts/bernino-regular.woff2?v1" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="https://st3.idealista.pt/static/common/release/modules/resources/fonts/bernino-bold.woff2?v1" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="https://st3.idealista.pt/static/common/release/modules/resources/fonts/bernino-semibold.woff2?v1" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="https://st3.idealista.pt/static/common/release/modules/resources/fonts/new-icons/idealista-regular.woff2?v105" as="font" type="font/woff2" crossorigin="">
+<link rel="stylesheet" href="https://st3.idealista.pt/static/common/css/lib/icons/dist/iconfont-new-minify.css?20251127-1714">
+<script>var isPhoneInputWithVanillaTemplateEnabled = true;</script>
+<link rel="dns-prefetch" href="//img4.idealista.pt"><iframe srcdoc="/**/" style="display: none;"></iframe></head>
+<body>
+<script>
+        
+        window.utagPath = '//dp.idealista.pt/pt-portal/prod/utag.js';
+    </script>
+<script src="https://st3.idealista.pt/static/vendors/ubridge-1.0.15.min.js" defer=""></script>
+<a href="#home-image" class="skip-to-content">
+Saltar para o conteúdo principal
+</a>
+<script>
+          var newConfig = window.config || {};
+          newConfig.isUserAuthenticated = false
+          var config = config || {};
+          config.hasEnclosedNavBar = false;
+        </script>
+<script type="module" defer="" src="https://st3.idealista.pt/static/react/shell/dist/main.js?20251127-1714"></script>
+<div id="shell-root">
+<header class="menu-wrapper">
+<div class="menu-container"></div>
+</header>
+</div>
+<div id="wrapper">
+<div class="new-home-image">
+<section class="new-search-box">
+<h1 class="new-search-box-title">A tua casa é onde estão os teus livros</h1>
+<form id="free-search-form" class="free-search-form" name="frmAnuDir" method="POST" action="/pesquisa/">
+<div id="form-new-radio-button-wrapper" class="form-new-radio-button-wrapper">
+<fieldset class="new-radio-button">
+<legend class="screen-reader-only">Seleciona uma operação</legend>
+<input name="operation" id="free-search-operation-sale" type="radio" value="sale" autocomplete="off">
+<label for="free-search-operation-sale" title="Comprar">
+Comprar
+</label>
+<input name="operation" id="free-search-operation-rent" type="radio" value="rent" autocomplete="off">
+<label for="free-search-operation-rent" title="Arrendar">
+Arrendar
+</label>
+</fieldset>
+</div>
+<div id="form-typology-wrapper" class="form-typology-wrapper">
+<label for="typology" class="screen-reader-only">Tipo de imóvel</label>
+<select id="typology" name="typology" class="dropdown-list">
+<option value="" selected="" class="home-select-default-toggle">Tipo de imóvel</option>
+<option value="newdevelopment"> Nova construção</option>
+<option value="home" selected=""> Casas e apartamentos</option>
+<option value="room"> Quartos</option>
+<option value="garage"> Garagens</option>
+<option value="storageroom"> Arrecadações</option>
+<option value="office"> Escritórios</option>
+<option value="warehouse"> Espaços comerciais ou armazéns</option>
+<option value="transfer"> Trespasses</option>
+<option value="land"> Terrenos</option>
+<option value="building"> Prédios</option>
+<option value="vacational"> Para férias</option>
+</select>
+</div>
+<div class="form-item-block" layermobileonblurexclusion="on">
+<label for="campoBus" class="screen-reader-only">Escreve uma localização onde procurar</label>
+<input id="campoBus" mobileonblur="on" autocomplete="off" type="text" data-validation="pattern required" data-pattern=".{2,}" data-do-not-markup-xiti-validation="false" placeholder="Escreve onde procuras" name="freeText" data-message-required="Escreve uma localização onde procurar" data-message-pattern="Escreve uma localização onde procurar">
+<div class="container-result-list">
+<div class="result-list search-near"></div>
+</div>
+</div>
+<button id="btn-free-search" class="btn action">
+Procurar
+</button>
+</form>
+</section>
+<picture class="home-picture"><source srcset="https://img4.idealista.pt/blur/HOME_ORIGINAL/0/id.pro.pt.image.master/home/1763384621922.webp"><source srcset="https://img4.idealista.pt/blur/HOME_ORIGINAL/0/id.pro.pt.image.master/home/1763384621922.jpg"><img src="https://img4.idealista.pt/blur/HOME_ORIGINAL/0/id.pro.pt.image.master/home/1763384621922.jpg" alt="Casa em Cascais e Estoril, Lisboa" id="home-image"></picture><a class="txt-caption link-image-home" id="property-link" href="/imovel/33240063/" title="Casa em Cascais e Estoril, Lisboa" data-click="1" data-markup="home-click-en-capa-enlace"><span class="title">Casa em Cascais e Estoril, Lisboa</span><span class="price">2.200.000 euros</span></a>
+</div>
+<div class="user-searches reset-margin" id="userSearches"></div>
+<div role="navigation" class="home-boxes-container new-home">
+<a id="draw-your-search-button" href="" class="draw-search" data-collision-id="drawYourSearchModule">
+<picture role="img" class="draw-search-image" aria-label="Desenhar a tua zona de pesquisa">
+<source srcset="https://st3.idealista.pt/static/common/release/home/resources/img/draw-search/draw-search-large.jpg?20251127-1714" media="(min-width: 62rem)">
+<img fetchpriority="high" src="https://st3.idealista.pt/static/common/release/home/resources/img/draw-search/draw-search-small.jpg?20251127-1714" alt="idealista draw search">
+</picture>
+<span class="draw-search-description">
+<span role="heading" aria-level="2" class="draw-search-h2">
+Desenhar a tua zona de pesquisa
+</span>
+<span role="region" class="draw-search-text">
+Escolher exatamente a zona que procuras no mapa.
+</span>
+<span role="button" class="draw-search-link">
+Desenhar a tua zona de pesquisa
+</span>
+</span>
+</a>
+<a class="put-property" href="/info/novo-anuncio" id="put-your-ad-button">
+<picture role="img" class="put-property-image" aria-label="Publica o teu imóvel grátis">
+<source srcset="https://st3.idealista.pt/static/common/release/home/resources/img/put-property/pt/put-property-small.jpg?20251127-1714" media="(min-width: 62rem)">
+<img src="https://st3.idealista.pt/static/common/release/home/resources/img/put-property/pt/put-property-large.jpg?20251127-1714" alt="idealistaput property">
+</picture>
+<span class="put-property-description">
+<span role="heading" aria-level="2" class="put-property-h2">
+Publica o teu imóvel grátis
+</span>
+<span role="region" class="put-property-text">
+Os teus 2 primeiros anúncios são grátis. Casas, quartos, escritórios... Temos espaço para todos!
+</span>
+<span role="button" class="put-property-link">
+Publicar um anúncio grátis
+</span>
+</span>
+</a>
+</div>
+</div>
+<div id="home-app"><article id="apps" class="home-app-info-module home-app-info-module--apps img-pos--left " data-hide-on-modal="true"><picture class="main-image"><source srcset="https://st3.idealista.pt/static/common/release/home/resources/img/apps/pt/apps-large-devices.jpg?20251104-1636" media="(min-width: 62rem)"><source srcset="https://st3.idealista.pt/static/common/release/home/resources/img/apps/pt/apps-medium-devices.jpg?20251104-1636" media="(min-width: 48rem)"><img width="768" height="346" src="https://st3.idealista.pt/static/common/release/home/resources/img/apps/pt/apps-small-devices.jpg?20251104-1636" loading="lazy" alt="idealista APP"></picture><div role="region" class="module-details"><h2>Leva o idealista sempre contigo</h2><p>Com a nossa app serás o primeiro a saber se há novos imóveis, alterações nos teus favoritos e mensagens no chat.</p><img class="app-qr" src="https://st3.idealista.pt/static/common/release/home/resources/img/qr_app_pt.png" alt="idealista APP QR"></div></article><article id="property-valuation" class="home-app-info-module home-app-info-module--property-valuation img-pos--right " data-hide-on-modal="true"><picture class="main-image"><source srcset="https://st3.idealista.pt/static/common/release/home/resources/img/propertyvaluation/pt/pt/propertyvaluation-large-devices.png?20251104-1636" media="(min-width: 62rem)"><source srcset="https://st3.idealista.pt/static/common/release/home/resources/img/propertyvaluation/pt/pt/propertyvaluation-medium-devices.png?20251104-1636" media="(min-width: 48rem)"><img width="768" height="346" src="https://st3.idealista.pt/static/common/release/home/resources/img/propertyvaluation/pt/pt/propertyvaluation-small-devices.png?20251104-1636" loading="lazy" alt="Property Valuation"></picture><div role="region" class="module-details"><h2>Quanto vale a tua casa?</h2><p>Uma avaliação online gratuita em segundos:</p><ul data-kiwi-list="true" style="color:var(--undefined, inherit)" class="_kiwi-list_17ah6_1 _kiwi-list--square_17ah6_9" aria-label="unordered list"><li>com um intervalo de preço preciso para venda e arrendamento</li><li>analisando a evolução de mercado</li><li>comparando com imóveis semelhantes</li></ul><a title="Avalia a tua casa grátis" href="https://www.idealista.pt/avaliacao-de-imoveis/" role="link" aria-disabled="false" aria-hidden="false" target="_self" class="_kiwi-link_1v49p_6 _kiwi-link--medium_1v49p_53 _kiwi-link--stands-alone_1v49p_61 _kiwi-link--no-visited_1v49p_30"><span class="_kiwi-link__label_1v49p_21">Avalia a tua casa grátis</span></a></div></article><article id="agencies-recommender" class="home-app-info-module home-app-info-module--agencies-recommender img-pos--left " data-hide-on-modal="true"><picture class="main-image"><source srcset="https://st3.idealista.pt/static/common/release/home/resources/img/agenciesrecommender/agenciesrecommender-large-devices.jpg?20251104-1636" media="(min-width: 62rem)"><source srcset="https://st3.idealista.pt/static/common/release/home/resources/img/agenciesrecommender/agenciesrecommender-medium-devices.jpg?20251104-1636" media="(min-width: 48rem)"><img width="768" height="346" src="https://st3.idealista.pt/static/common/release/home/resources/img/agenciesrecommender/agenciesrecommender-small-devices.jpg?20251104-1636" loading="lazy" alt="Agencies Recommender"></picture><div role="region" class="module-details"><h2>Recomendamos-te as agências imobiliárias mais adequadas para vender a tua casa</h2><p>Selecionamos até 4 agências, consoante as características do teu imóvel, que te ajudarão a vender a tua casa mais rápido.</p><a title="Procurar uma agência imobiliária" href="https://www.idealista.pt/escolher-agencia-imobiliaria/" role="link" aria-disabled="false" aria-hidden="false" target="_self" class="_kiwi-link_1v49p_6 _kiwi-link--medium_1v49p_53 _kiwi-link--stands-alone_1v49p_61 _kiwi-link--no-visited_1v49p_30"><span class="_kiwi-link__label_1v49p_21">Procurar uma agência imobiliária</span></a></div></article><article id="mortgage" class="home-app-info-module home-app-info-module--mortgage img-pos--right " data-hide-on-modal="true"><picture class="main-image"><source srcset="https://st3.idealista.pt/static/common/release/home/resources/img/mortgages/pt/pt/home-app-mortgages-large.jpg?20251104-1636" media="(min-width: 62rem)"><source srcset="https://st3.idealista.pt/static/common/release/home/resources/img/mortgages/pt/pt/home-app-mortgages-large.jpg?20251104-1636" media="(min-width: 48rem)"><img width="768" height="346" src="https://st3.idealista.pt/static/common/release/home/resources/img/mortgages/pt/pt/home-app-mortgages-small.jpg?20251104-1636" loading="lazy" alt="idealista mortgages"></picture><div role="region" class="module-details"><h2>Conseguimos o teu crédito habitação</h2><p>Trabalhamos com os principais bancos, resolvemos as tuas dúvidas e acompanhamos-te ao longo de todo o processo gratuitamente.</p><a title="Descobrir idealista/créditohabitação" href="https://www.idealista.pt/credito-habitacao" role="link" aria-disabled="false" aria-hidden="false" target="_self" class="_kiwi-link_1v49p_6 _kiwi-link--medium_1v49p_53 _kiwi-link--stands-alone_1v49p_61 _kiwi-link--no-visited_1v49p_30"><span class="_kiwi-link__label_1v49p_21">Descobrir idealista/créditohabitação</span></a></div></article><article id="rentalia" class="home-app-info-module home-app-info-module--rentalia img-pos--left " data-hide-on-modal="true"><picture class="main-image"><source srcset="https://st3.idealista.pt/static/common/release/home/resources/img/rentalia/pt/rentalia-medium-devices-summer.jpg?20251104-1636" media="(min-width: 62rem)"><source srcset="https://st3.idealista.pt/static/common/release/home/resources/img/rentalia/pt/rentalia-medium-devices-summer.jpg?20251104-1636" media="(min-width: 48rem)"><img width="768" height="346" src="https://st3.idealista.pt/static/common/release/home/resources/img/rentalia/pt/rentalia-small-devices-summer.jpg?20251104-1636" loading="lazy" alt="Rentalia"></picture><div role="region" class="module-details"><h2>Aproveita esta ponte para desconectar e ir de férias</h2><p>Todos queremos umas férias e desligarmo-nos do dia-a-dia, quer seja na praia, nas montanhas ou na cidade. Vais resistir a uma escapadinha rural? Lareira, churrasqueira, jardim, piscina... tu escolhes.</p><a title="Rentalia" href="https://pt.rentalia.com/" role="link" aria-disabled="false" aria-hidden="false" target="_self" class="_kiwi-link_1v49p_6 _kiwi-link--medium_1v49p_53 _kiwi-link--stands-alone_1v49p_61 _kiwi-link--no-visited_1v49p_30"><span class="_kiwi-link__label_1v49p_21">Ver arrendamentos de férias para os feriados</span></a></div></article><section id="news" class="home-app-news"><h2 class="home-app-news__logo"><span class="icon-idealista-icon"><span>idealista</span></span><span class="icon-news"><span>news</span></span></h2><p class="home-app-news__subtitle">As principais notícias e atualidade sobre o mercado imobiliário e negócios.</p><div class="home-app-news-content"><input type="radio" id="tab-highlight" name="tabs" aria-controls="tab-panel-highlight" checked=""><label class="tab" for="tab-highlight" id="tab-label-highlight">Notícias destacadas</label><input type="radio" id="tab-real_estate" name="tabs" aria-controls="tab-panel-real_estate"><label class="tab" for="tab-real_estate" id="tab-label-real_estate">Imobiliário</label><input type="radio" id="tab-finance" name="tabs" aria-controls="tab-panel-finance"><label class="tab" for="tab-finance" id="tab-label-finance">Finanças</label><input type="radio" id="tab-holiday" name="tabs" aria-controls="tab-panel-holiday"><label class="tab" for="tab-holiday" id="tab-label-holiday">Para férias</label><input type="radio" id="tab-decoration" name="tabs" aria-controls="tab-panel-decoration"><label class="tab" for="tab-decoration" id="tab-label-decoration">Decoração</label><hr class="home-app-news-content__rule"><div id="tab-panel-highlight" class="home-app-news-content__wrapper "><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/imobiliario/habitacao/2025/11/24/71420-obras-de-luxo-como-introduzir-a-domotica-na-transformacao-da-casa"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-09/images/modern-living-room-interior-with-large-tv-screen-displaying-home-automation-system.jpg?VersionId=ngVx0f9TRBgWeLb24AmiALWzZzwceDPu&amp;itok=6i_bVTtv" loading="lazy" alt="Obras de luxo: como introduzir a domótica na transformação da casa"><span class="home-app-news-article__description"><span class="home-app-news-article__title">Obras de luxo: como introduzir a domótica na transformação da casa</span><span class="home-app-news-article__link">Ler mais</span></span></a></article><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/decoracao/casas-de-sonho/2025/11/27/71463-estas-casas-de-betao-moldam-se-para-se-integrar-na-paisagem-mexicana"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-09/1_las-rocas.jpg?VersionId=.gvSoLse99ER5BFVCyG6xY0KcVCjYaR9&amp;h=a86f313e&amp;itok=oEu8Woh3" loading="lazy" alt="Estas casas de betão moldam-se para se integrar na paisagem mexicana"><span class="home-app-news-article__description"><span class="home-app-news-article__title">Estas casas de betão moldam-se para se integrar na paisagem mexicana</span><span class="home-app-news-article__link">Ler mais</span></span></a></article><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/imobiliario/habitacao/2025/11/27/72703-casas-a-venda-ate-200-mil-euros-oferta-cai-73-em-cinco-anos"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/pessoa_pensativa_freepik.jpg?VersionId=S12hpKB5OI03XhxZXrwwU25ZZScNEAhg&amp;itok=eZ687c4c" loading="lazy" alt="Casas à venda até 200 mil euros? Oferta cai 73% em cinco anos"><span class="home-app-news-article__description"><span class="home-app-news-article__title">Casas à venda até 200 mil euros? Oferta cai 73% em cinco anos</span><span class="home-app-news-article__link">Ler mais</span></span></a></article></div><div id="tab-panel-real_estate" class="home-app-news-content__wrapper "><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/imobiliario/escritorios/2025/11/27/72818-mercado-de-escritorios-estabiliza-em-lisboa-e-valoriza-no-porto"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/3d-rendering-business-meeting-working-room-office-building.jpg?VersionId=9DNjc5_7N6o0BmhVmUncdqkXp5R6oueP&amp;itok=pUY0BQzV" loading="lazy" alt="Mercado de escritórios estabiliza em Lisboa e valoriza no Porto"><span class="home-app-news-article__description"><span class="home-app-news-article__title">Mercado de escritórios estabiliza em Lisboa e valoriza no Porto</span><span class="home-app-news-article__link">Ler mais</span></span></a></article><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/imobiliario/empresas/2025/11/27/72817-imobiliario-e-construcao-recorrem-a-via-verde-para-reforcar-mao-de-obra"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/mao-de-obra.jpg?VersionId=sC6_3Evas6b1i5w4.GuTpzbhKTcMbON4&amp;h=f2af6d3c&amp;itok=diMmG19P" loading="lazy" alt="Imobiliário e construção recorrem à “via verde” para reforçar mão-de-obra"><span class="home-app-news-article__description"><span class="home-app-news-article__title">Imobiliário e construção recorrem à “via verde” para reforçar mão-de-obra</span><span class="home-app-news-article__link">Ler mais</span></span></a></article><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/imobiliario/habitacao/2025/11/27/72814-camara-de-lisboa-aprova-proposta-para-regular-alojamento-local"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/alojamento_local_0.jpg?VersionId=bkWhcII..d31aygI4kxOzuHt8m7xCjXQ&amp;h=f7adbc55&amp;itok=_14G3zWP" loading="lazy" alt="Câmara de Lisboa aprova proposta para regular Alojamento Local"><span class="home-app-news-article__description"><span class="home-app-news-article__title">Câmara de Lisboa aprova proposta para regular Alojamento Local</span><span class="home-app-news-article__link">Ler mais</span></span></a></article></div><div id="tab-panel-finance" class="home-app-news-content__wrapper "><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/financas/credito-a-habitacao/2025/11/27/72811-credito-habitacao-acelera-em-outubro-pelo-22o-mes-consecutivo"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/credito_habitacao.jpg?VersionId=pakn0VE3UqETTje42n6lgvycolwbENqe&amp;itok=JwytD75L" loading="lazy" alt="'Stock' de crédito habitação acelera em outubro pelo 22º mês seguido"><span class="home-app-news-article__description"><span class="home-app-news-article__title">'Stock' de crédito habitação acelera em outubro pelo 22º mês seguido</span><span class="home-app-news-article__link">Ler mais</span></span></a></article><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/financas/investimentos/2025/11/27/72792-portugal-e-de-certa-forma-uma-mini-merlin"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/ismael_clemente.jpg?VersionId=Zo.kYU7q_1idpjhwRAi9BNmRyZCpYDtt&amp;itok=Jji_L4ik" loading="lazy" alt="&quot;Portugal é, de certa forma, uma mini-Merlin&quot;"><span class="home-app-news-article__description"><span class="home-app-news-article__title">"Portugal é, de certa forma, uma mini-Merlin"</span><span class="home-app-news-article__link">Ler mais</span></span></a></article><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/financas/lar/2025/11/26/72340-bens-essenciais-na-black-friday-vale-a-pena-comprar"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-10/images/rapariga-black-friday.jpg?VersionId=ToNI3Z.1r4Fjf24ifzwfSq_UwSRB8sJX&amp;itok=c0tM6gwi" loading="lazy" alt="Bens essenciais na Black Friday: vale a pena comprar?"><span class="home-app-news-article__description"><span class="home-app-news-article__title">Bens essenciais na Black Friday: vale a pena comprar?</span><span class="home-app-news-article__link">Ler mais</span></span></a></article></div><div id="tab-panel-holiday" class="home-app-news-content__wrapper "><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/ferias/turismo/2025/11/27/72816-hyatt-aposta-em-portugal-com-dois-hoteis-em-lisboa-e-outro-no-algarve"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/andaz_lisboa.jpg?VersionId=oH69ooAOMm_SQYC3Ox1X9Tkr.N_0Ew_P&amp;itok=ktnnBoND" loading="lazy" alt="Hyatt aposta em Portugal com dois hotéis em Lisboa e outro no Algarve"><span class="home-app-news-article__description"><span class="home-app-news-article__title">Hyatt aposta em Portugal com dois hotéis em Lisboa e outro no Algarve</span><span class="home-app-news-article__link">Ler mais</span></span></a></article><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/ferias/turismo/2025/11/27/72618-dezembro-encantado-os-12-destinos-para-visitares-nas-ferias-de-natal"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/ferias_em_dezembro.jpg?VersionId=.gG_lAmFjx1maziIbk3Iw7uLAcwB_8V8&amp;h=0ca8c3eb&amp;itok=ag5yoP7V" loading="lazy" alt="Dezembro encantado: os 12 destinos para visitares nas férias de Natal"><span class="home-app-news-article__description"><span class="home-app-news-article__title">Dezembro encantado: os 12 destinos para visitares nas férias de Natal</span><span class="home-app-news-article__link">Ler mais</span></span></a></article><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/ferias/hoteis-com-encanto/2025/11/26/72735-o-hotel-que-inspirou-pablo-picasso-e-hemingway-renasce-em-franca"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/gettyimages-1138683544.jpg?VersionId=hTKFOvN21R_qIiXwRKK92mOSB96BWVta&amp;itok=AT_MgY7A" loading="lazy" alt="O hotel que inspirou Pablo Picasso e Hemingway renasce em França"><span class="home-app-news-article__description"><span class="home-app-news-article__title">O hotel que inspirou Pablo Picasso e Hemingway renasce em França</span><span class="home-app-news-article__link">Ler mais</span></span></a></article></div><div id="tab-panel-decoration" class="home-app-news-content__wrapper "><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/decoracao/conselhos/2025/11/27/72815-organizacao-e-limpeza-da-casa-as-melhores-compras-para-a-black-friday"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/cozinha-decorada.jpg?VersionId=EyfJSIjxMHHjr96f1KHPOadqgeV1UJyJ&amp;itok=hGEPhaw3" loading="lazy" alt="Organização e limpeza da casa: as melhores compras para a Black Friday"><span class="home-app-news-article__description"><span class="home-app-news-article__title">Organização e limpeza da casa: as melhores compras para a Black Friday</span><span class="home-app-news-article__link">Ler mais</span></span></a></article><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/decoracao/conselhos/2025/11/27/72806-aproveita-a-black-friday-para-decorar-a-tua-casa-com-estas-promocoes"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/sala-estar-decorada.jpg?VersionId=Y5NJYr7beV9Ihp2Ttah0ugbtwzs1H3Tb&amp;itok=pbgUJvtu" loading="lazy" alt="Aproveita a Black Friday para decorar a tua casa com estas promoções"><span class="home-app-news-article__description"><span class="home-app-news-article__title">Aproveita a Black Friday para decorar a tua casa com estas promoções</span><span class="home-app-news-article__link">Ler mais</span></span></a></article><article class="home-app-news-article"><a class="home-app-news-article__wrapper" href="https://www.idealista.pt/news/decoracao/casas-de-sonho/2025/11/27/71463-estas-casas-de-betao-moldam-se-para-se-integrar-na-paisagem-mexicana"><img class="home-app-news-article__img" width="600" height="314" src="https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-09/1_las-rocas.jpg?VersionId=.gvSoLse99ER5BFVCyG6xY0KcVCjYaR9&amp;h=a86f313e&amp;itok=oEu8Woh3" loading="lazy" alt="Estas casas de betão moldam-se para se integrar na paisagem mexicana"><span class="home-app-news-article__description"><span class="home-app-news-article__title">Estas casas de betão moldam-se para se integrar na paisagem mexicana</span><span class="home-app-news-article__link">Ler mais</span></span></a></article></div></div><div class="home-app-news__link"><a href="https://www.idealista.pt/news" role="link" aria-disabled="false" aria-hidden="false" target="_self" class="_kiwi-link_1v49p_6 _kiwi-link--medium_1v49p_53 _kiwi-link--stands-alone_1v49p_61 _kiwi-link--no-visited_1v49p_30"><span class="_kiwi-link__label_1v49p_21">Ver mais notícias imobiliárias</span></a></div></section><script>window.__HomeAppDelivery_INITIAL_DATA__ = {"newsURL":"https://www.idealista.pt/news","news":[{"name":"highlight","articles":[{"title":"Obras de luxo: como introduzir a domótica na transformação da casa","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-09/images/modern-living-room-interior-with-large-tv-screen-displaying-home-automation-system.jpg?VersionId=ngVx0f9TRBgWeLb24AmiALWzZzwceDPu&itok=6i_bVTtv","url":"https://www.idealista.pt/news/imobiliario/habitacao/2025/11/24/71420-obras-de-luxo-como-introduzir-a-domotica-na-transformacao-da-casa"},{"title":"Estas casas de betão moldam-se para se integrar na paisagem mexicana","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-09/1_las-rocas.jpg?VersionId=.gvSoLse99ER5BFVCyG6xY0KcVCjYaR9&h=a86f313e&itok=oEu8Woh3","url":"https://www.idealista.pt/news/decoracao/casas-de-sonho/2025/11/27/71463-estas-casas-de-betao-moldam-se-para-se-integrar-na-paisagem-mexicana"},{"title":"Casas à venda até 200 mil euros? Oferta cai 73% em cinco anos","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/pessoa_pensativa_freepik.jpg?VersionId=S12hpKB5OI03XhxZXrwwU25ZZScNEAhg&itok=eZ687c4c","url":"https://www.idealista.pt/news/imobiliario/habitacao/2025/11/27/72703-casas-a-venda-ate-200-mil-euros-oferta-cai-73-em-cinco-anos"}]},{"name":"real_estate","articles":[{"title":"Mercado de escritórios estabiliza em Lisboa e valoriza no Porto","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/3d-rendering-business-meeting-working-room-office-building.jpg?VersionId=9DNjc5_7N6o0BmhVmUncdqkXp5R6oueP&itok=pUY0BQzV","url":"https://www.idealista.pt/news/imobiliario/escritorios/2025/11/27/72818-mercado-de-escritorios-estabiliza-em-lisboa-e-valoriza-no-porto"},{"title":"Imobiliário e construção recorrem à “via verde” para reforçar mão-de-obra","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/mao-de-obra.jpg?VersionId=sC6_3Evas6b1i5w4.GuTpzbhKTcMbON4&h=f2af6d3c&itok=diMmG19P","url":"https://www.idealista.pt/news/imobiliario/empresas/2025/11/27/72817-imobiliario-e-construcao-recorrem-a-via-verde-para-reforcar-mao-de-obra"},{"title":"Câmara de Lisboa aprova proposta para regular Alojamento Local","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/alojamento_local_0.jpg?VersionId=bkWhcII..d31aygI4kxOzuHt8m7xCjXQ&h=f7adbc55&itok=_14G3zWP","url":"https://www.idealista.pt/news/imobiliario/habitacao/2025/11/27/72814-camara-de-lisboa-aprova-proposta-para-regular-alojamento-local"}]},{"name":"finance","articles":[{"title":"'Stock' de crédito habitação acelera em outubro pelo 22º mês seguido","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/credito_habitacao.jpg?VersionId=pakn0VE3UqETTje42n6lgvycolwbENqe&itok=JwytD75L","url":"https://www.idealista.pt/news/financas/credito-a-habitacao/2025/11/27/72811-credito-habitacao-acelera-em-outubro-pelo-22o-mes-consecutivo"},{"title":"\"Portugal é, de certa forma, uma mini-Merlin\"","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/ismael_clemente.jpg?VersionId=Zo.kYU7q_1idpjhwRAi9BNmRyZCpYDtt&itok=Jji_L4ik","url":"https://www.idealista.pt/news/financas/investimentos/2025/11/27/72792-portugal-e-de-certa-forma-uma-mini-merlin"},{"title":"Bens essenciais na Black Friday: vale a pena comprar?","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-10/images/rapariga-black-friday.jpg?VersionId=ToNI3Z.1r4Fjf24ifzwfSq_UwSRB8sJX&itok=c0tM6gwi","url":"https://www.idealista.pt/news/financas/lar/2025/11/26/72340-bens-essenciais-na-black-friday-vale-a-pena-comprar"}]},{"name":"holiday","articles":[{"title":"Hyatt aposta em Portugal com dois hotéis em Lisboa e outro no Algarve","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/andaz_lisboa.jpg?VersionId=oH69ooAOMm_SQYC3Ox1X9Tkr.N_0Ew_P&itok=ktnnBoND","url":"https://www.idealista.pt/news/ferias/turismo/2025/11/27/72816-hyatt-aposta-em-portugal-com-dois-hoteis-em-lisboa-e-outro-no-algarve"},{"title":"Dezembro encantado: os 12 destinos para visitares nas férias de Natal","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/ferias_em_dezembro.jpg?VersionId=.gG_lAmFjx1maziIbk3Iw7uLAcwB_8V8&h=0ca8c3eb&itok=ag5yoP7V","url":"https://www.idealista.pt/news/ferias/turismo/2025/11/27/72618-dezembro-encantado-os-12-destinos-para-visitares-nas-ferias-de-natal"},{"title":"O hotel que inspirou Pablo Picasso e Hemingway renasce em França","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/gettyimages-1138683544.jpg?VersionId=hTKFOvN21R_qIiXwRKK92mOSB96BWVta&itok=AT_MgY7A","url":"https://www.idealista.pt/news/ferias/hoteis-com-encanto/2025/11/26/72735-o-hotel-que-inspirou-pablo-picasso-e-hemingway-renasce-em-franca"}]},{"name":"decoration","articles":[{"title":"Organização e limpeza da casa: as melhores compras para a Black Friday","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/cozinha-decorada.jpg?VersionId=EyfJSIjxMHHjr96f1KHPOadqgeV1UJyJ&itok=hGEPhaw3","url":"https://www.idealista.pt/news/decoracao/conselhos/2025/11/27/72815-organizacao-e-limpeza-da-casa-as-melhores-compras-para-a-black-friday"},{"title":"Aproveita a Black Friday para decorar a tua casa com estas promoções","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-11/images/sala-estar-decorada.jpg?VersionId=Y5NJYr7beV9Ihp2Ttah0ugbtwzs1H3Tb&itok=pbgUJvtu","url":"https://www.idealista.pt/news/decoracao/conselhos/2025/11/27/72806-aproveita-a-black-friday-para-decorar-a-tua-casa-com-estas-promocoes"},{"title":"Estas casas de betão moldam-se para se integrar na paisagem mexicana","img":"https://st3.idealista.pt/news/arquivos/styles/highlighted_sm/public/2025-09/1_las-rocas.jpg?VersionId=.gvSoLse99ER5BFVCyG6xY0KcVCjYaR9&h=a86f313e&itok=oEu8Woh3","url":"https://www.idealista.pt/news/decoracao/casas-de-sonho/2025/11/27/71463-estas-casas-de-betao-moldam-se-para-se-integrar-na-paisagem-mexicana"}]}],"infoModules":[{"id":"apps","links":{"stores":{"google":{"href":"https://play.google.com/store/apps/details?id=com.idealista.android&hl=pt"},"apple":{"href":"https://itunes.apple.com/pt/app/idealista.com/id465958311?mt=8"}}},"images":{"main":{"position":"left","urls":{"small":"https://st3.idealista.pt/static/common/release/home/resources/img/apps/pt/apps-small-devices.jpg?20251104-1636","medium":"https://st3.idealista.pt/static/common/release/home/resources/img/apps/pt/apps-medium-devices.jpg?20251104-1636","large":"https://st3.idealista.pt/static/common/release/home/resources/img/apps/pt/apps-large-devices.jpg?20251104-1636"}},"qr":{"url":"https://st3.idealista.pt/static/common/release/home/resources/img/qr_app_pt.png"},"stores":{"google":{"url":"https://st3.idealista.pt/static/common/release/modules/resources/img/badges-app/googleplay/google-play-badge-PT.png"},"apple":{"url":"https://st3.idealista.pt/static/common/release/modules/resources/img/badges-app/applestore/appstore_PT.svg"}}}},{"id":"property-valuation","links":{"main":{"href":"https://www.idealista.pt/avaliacao-de-imoveis/"}},"images":{"main":{"position":"right","urls":{"small":"https://st3.idealista.pt/static/common/release/home/resources/img/propertyvaluation/pt/pt/propertyvaluation-small-devices.png?20251104-1636","medium":"https://st3.idealista.pt/static/common/release/home/resources/img/propertyvaluation/pt/pt/propertyvaluation-medium-devices.png?20251104-1636","large":"https://st3.idealista.pt/static/common/release/home/resources/img/propertyvaluation/pt/pt/propertyvaluation-large-devices.png?20251104-1636"}}}},{"id":"agencies-recommender","links":{"main":{"href":"https://www.idealista.pt/escolher-agencia-imobiliaria/"}},"images":{"main":{"position":"left","urls":{"small":"https://st3.idealista.pt/static/common/release/home/resources/img/agenciesrecommender/agenciesrecommender-small-devices.jpg?20251104-1636","medium":"https://st3.idealista.pt/static/common/release/home/resources/img/agenciesrecommender/agenciesrecommender-medium-devices.jpg?20251104-1636","large":"https://st3.idealista.pt/static/common/release/home/resources/img/agenciesrecommender/agenciesrecommender-large-devices.jpg?20251104-1636"}}}},{"id":"mortgage","links":{"image":{"href":"https://www.idealista.pt/credito-habitacao/"},"content":{"href":"https://www.idealista.pt/credito-habitacao"}},"images":{"main":{"position":"right","urls":{"small":"https://st3.idealista.pt/static/common/release/home/resources/img/mortgages/pt/pt/home-app-mortgages-small.jpg?20251104-1636","medium":"https://st3.idealista.pt/static/common/release/home/resources/img/mortgages/pt/pt/home-app-mortgages-large.jpg?20251104-1636","large":"https://st3.idealista.pt/static/common/release/home/resources/img/mortgages/pt/pt/home-app-mortgages-large.jpg?20251104-1636"}}}},{"id":"rentalia","links":{"main":{"href":"https://pt.rentalia.com/"}},"images":{"main":{"position":"left","urls":{"small":"https://st3.idealista.pt/static/common/release/home/resources/img/rentalia/pt/rentalia-small-devices-summer.jpg?20251104-1636","medium":"https://st3.idealista.pt/static/common/release/home/resources/img/rentalia/pt/rentalia-medium-devices-summer.jpg?20251104-1636","large":"https://st3.idealista.pt/static/common/release/home/resources/img/rentalia/pt/rentalia-medium-devices-summer.jpg?20251104-1636"},"dateId":"longWeekendDecember"}}}],"messages":{"home.app.news.topic.1":"Notícias destacadas","home.app.news.topic.2":"Imobiliário","home.app.news.topic.3":"Finanças","home.app.news.topic.4":"Para férias","home.app.news.topic.5":"Decoração","home.app.news.title":"As principais notícias e atualidade sobre o mercado imobiliário e negócios.","home.app.news.read.more":"Ler mais","home.app.news.see.more":"Ver mais notícias imobiliárias","home.app.module.mortgage.ad.title":"Conseguimos o teu crédito habitação","home.app.module.mortgage.ad.text":"Trabalhamos com os principais bancos, resolvemos as tuas dúvidas e acompanhamos-te ao longo de todo o processo gratuitamente.","home.app.module.mortgage.ad.link":"Descobrir idealista/créditohabitação","home.app.module.mortgage.simulator.title":"Os créditos à habitação de todos os bancos num único lugar","home.app.module.mortgage.simulator.price.text":"Preço do imóvel","home.app.module.mortgage.simulator.savings.text":"Poupança proporcionada","home.app.module.mortgage.simulator.alerts.saving":"O valor das poupanças não pode ser superior ao preço do imóvel","home.app.module.mortgage.simulator.calculate.link":"Calcular crédito habitação","home.app.module.propertyvaluation.title":"Quanto vale a tua casa?","home.app.module.propertyvaluation.description":"Uma avaliação online gratuita em segundos:","home.app.module.propertyvaluation.description.firstline":"com um intervalo de preço preciso para venda e arrendamento","home.app.module.propertyvaluation.description.secondline":"analisando a evolução de mercado","home.app.module.propertyvaluation.description.thirdline":"comparando com imóveis semelhantes","home.app.module.propertyvaluation.search.link":"Avalia a tua casa grátis","home.app.module.app.title":"Leva o idealista sempre contigo","home.app.module.app.description":"Com a nossa app serás o primeiro a saber se há novos imóveis, alterações nos teus favoritos e mensagens no chat.","home.app.module.rentalia.summer.title":"Arrendamentos de férias em Espanha, Itália e Portugal para refrescar este verão","home.app.module.rentalia.winter.title":"Casas rurais em Espanha, Itália e Portugal para te resguardares do frio no inverno","home.app.module.rentalia.spring.title":"Casas rurais em Espanha, Itália e Portugal para desfrutar da primavera","home.app.module.rentalia.autumn.title":"Casas rurais em Espanha, Itália e Portugal para aproveitar ao máximo o outono","home.app.module.rentalia.easter.title":"Aproveita esta Páscoa para ir de férias","home.app.module.rentalia.laborDay.title":"Aproveita esta ponte para desconectar e ir de férias","home.app.module.rentalia.longWeekendDecember.title":"Aproveita esta ponte para desconectar e ir de férias","home.app.module.rentalia.summer.link":"Ver arrendamentos de férias para o verão","home.app.module.rentalia.winter.link":"Ver arrendamentos de férias para o inverno","home.app.module.rentalia.spring.link":"Ver arrendamento de férias para a primavera","home.app.module.rentalia.autumn.link":"Ver arrendamentos de férias para o outono","home.app.module.rentalia.easter.link":"Ver arrendamentos de férias para a Páscoa","home.app.module.rentalia.laborDay.link":"Ver arrendamentos de férias para os feriados","home.app.module.rentalia.longWeekendDecember.link":"Ver arrendamentos de férias para os feriados","home.app.module.rentalia.description":"Todos queremos umas férias e desligarmo-nos do dia-a-dia, quer seja na praia, nas montanhas ou na cidade. Vais resistir a uma escapadinha rural? Lareira, churrasqueira, jardim, piscina... tu escolhes.","home.app.module.vendorleads.agenciesrecommender.title":"Recomendamos-te as agências imobiliárias mais adequadas para vender a tua casa","home.app.module.vendorleads.agenciesrecommender.description":"Selecionamos até 4 agências, consoante as características do teu imóvel, que te ajudarão a vender a tua casa mais rápido.","home.app.module.vendorleads.agenciesrecommender.link":"Procurar uma agência imobiliária","home.app.module.rentalia.holiday10june.title":"Aproveita esta ponte para desconectar e ir de férias","home.app.module.rentalia.holiday10june.link":"Ver arrendamentos de férias para os feriados"},"lang":"pt"};</script></div>
+<div class="new-home other-countries" data-hide-on-modal="">
+<h2 class="other-countries-title">
+Também somos o número 1 em Espanha e Itália
+</h2>
+<a class="other-countries-box" href="https://www.idealista.com/pt/" data-markup="home-country-es">
+<span role="img" class="other-countries-img" title="idealista Espanha" aria-label="idealista Espanha">
+<img width="64" height="56" src="https://st3.idealista.pt/static/common/release/home/resources/img/siluetax2_es.png?20251127-1714" alt="idealista Espanha" title="idealista Espanha">
+</span>
+<span class="other-countries-text">
+<span role="heading" aria-level="3" class="other-countries-link" title="idealista Espanha">
+idealista Espanha
+</span>
+<span class="text">
+Mais de um milhão de imóveis
+</span>
+</span>
+</a>
+<a class="other-countries-box" href="https://www.idealista.it/pt/" data-markup="home-country-it">
+<span class="other-countries-img" role="img" title="idealista Itália" aria-label="idealista Itália">
+<img width="64" height="56" src="https://st3.idealista.pt/static/common/release/home/resources/img/siluetax2_it.png?20251127-1714" alt="idealista Itália" title="idealista Itália">
+</span>
+<span class="other-countries-text">
+<span role="heading" aria-level="3" class="other-countries-link" title="idealista Itália">
+idealista Itália
+</span>
+<span class="text">
+Mais de um milhão de imóveis
+</span>
+</span>
+</a>
+</div>
+<section id="municipality-search" class="municipality-search">
+<h2 class="municipality-search-title" id="municipalityTitle">
+Pesquisa imóveis por distrito ou concelho: comprar casas
+</h2>
+<div class="--mobile">
+<div class="second-level-menu">
+<ul class="segmented-btn-group clearfix">
+<li class=" actived">
+<a href="/comprar-casas/#municipality-search" title="sale">Comprar</a>
+</li>
+<li class=" ">
+<a href="/arrendar-casas/#municipality-search" title="rent">Arrendar</a>
+</li>
+<li class=" ">
+<a href="/agencias-imobiliarias/#municipality-search"><span>Agências</span></a>
+</li>
+</ul>
+</div>
+<div class="item-form">
+<input type="hidden" name="typology" value="1">
+<ul class="dropdown-list-refresh">
+<li data-value="10"><a href="/comprar-empreendimentos/#municipality-search" title="Nova construção">Nova construção</a></li>
+<li data-value="1"><a href="/comprar-casas/#municipality-search" title="Casas e apartamentos">Casas e apartamentos</a></li>
+<li data-value="14">
+<a href="/trespasse/#municipality-search" title="Trespasses">
+Trespasses
+</a>
+</li>
+<li data-value="4"><a href="/comprar-garagens/#municipality-search" title="Garagens">Garagens</a></li>
+<li data-value="12"><a href="/comprar-arrecadacoes/#municipality-search" title="Arrecadações">Arrecadações</a></li>
+<li data-value="5"><a href="/comprar-escritorios/#municipality-search" title="Escritórios">Escritórios</a></li>
+<li data-value="6"><a href="/comprar-lojas_ou_armazens/#municipality-search" title="Espaços comerciais ou armazéns">Espaços comerciais ou armazéns</a></li>
+<li data-value="8"><a href="/comprar-terrenos/#municipality-search" title="Terrenos">Terrenos</a></li>
+<li data-value="13"><a href="/comprar-predios/#municipality-search" title="Prédios">Prédios</a></li>
+</ul>
+</div>
+<div class="item-form invalidated-selection">
+<input type="hidden" name="house-filter" value="0">
+<ul class="dropdown-list-refresh">
+<li data-value="0">
+<a href="/comprar-casas/#municipality-search" title="Escolhe: Apartamentos, penthouses e duplex, Casas e moradias...">Escolhe: Apartamentos, penthouses e duplex, Casas e moradias...</a>
+</li>
+<li data-value="1">
+<a href="/comprar-casas/com-apartamentos/#municipality-search" title="Apartamentos, penthouses e duplex">Apartamentos, penthouses e duplex</a>
+</li>
+<li data-value="2">
+<a href="/comprar-casas/com-moradias/#municipality-search" title="Casas e moradias">Casas e moradias</a>
+</li>
+<li data-value="3">
+<a href="/comprar-casas/com-casa-rusticas/#municipality-search" title="Casas rústicas">Casas rústicas</a>
+</li>
+<li data-value="4">
+<a href="/comprar-casas/com-duplex/#municipality-search" title="Duplex">Duplex</a>
+</li>
+<li data-value="5">
+<a href="/comprar-casas/com-recuados/#municipality-search" title="Penthouses">Penthouses</a>
+</li>
+</ul>
+</div>
+<div class="item-form invalidated-selection ">
+<input type="hidden" name="room-filter" value="0">
+<ul class="dropdown-list-refresh">
+<li data-value="0">
+<a href="" title="Escolhe: T0, T1, T2...">Escolhe: T0, T1, T2...</a>
+</li>
+<li data-value="1">
+<a href="/comprar-casas/com-apartamentos,t0/#municipality-search" title="T0">T0</a>
+</li>
+<li data-value="2">
+<a href="/comprar-casas/com-apartamentos,t1/#municipality-search" title="T1">T1</a>
+</li>
+<li data-value="3">
+<a href="/comprar-casas/com-apartamentos,t2/#municipality-search" title="T2">T2</a>
+</li>
+<li data-value="4">
+<a href="/comprar-casas/com-apartamentos,t3/#municipality-search" title="T3">T3</a>
+</li>
+<li data-value="5">
+<a href="/comprar-casas/com-apartamentos,t4-t5/#municipality-search" title="T4 ou superior">T4 ou superior</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="second-level-menu --desktop">
+<ul>
+<li class="actived">
+<a href="/comprar-casas/#municipality-search">
+<span>Comprar</span>
+</a>
+</li>
+<li class="">
+<a href="/arrendar-casas/#municipality-search">
+<span>Arrendar</span>
+</a>
+</li>
+<li class="">
+<a href="/agencias-imobiliarias/#municipality-search"><span>Agências</span></a>
+</li>
+</ul>
+</div>
+<div class="third-level-menu --desktop">
+<ul>
+<li class="">
+<a href="/comprar-empreendimentos/#municipality-search" title="Nova construção">
+<span> Nova construção</span>
+</a>
+</li>
+<li class="actived">
+<a href="/comprar-casas/#municipality-search" title="Casas e apartamentos">
+<span> Casas e apartamentos</span>
+</a>
+</li>
+<li class="">
+<a href="/trespasse/#municipality-search" title="Trespasses">
+<span> Trespasses</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-garagens/#municipality-search" title="Garagens">
+<span> Garagens</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-arrecadacoes/#municipality-search" title="Arrecadações">
+<span> Arrecadações</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-escritorios/#municipality-search" title="Escritórios">
+<span> Escritórios</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-lojas_ou_armazens/#municipality-search" title="Espaços comerciais ou armazéns">
+<span> Espaços comerciais ou armazéns</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-terrenos/#municipality-search" title="Terrenos">
+<span> Terrenos</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-predios/#municipality-search" title="Prédios">
+<span> Prédios</span>
+</a>
+</li>
+</ul>
+</div>
+<div id="filter-houses" class="third-level-menu --desktop">
+<ul>
+<li class="">
+<a href="/comprar-casas/com-apartamentos/#municipality-search" title="Apartamentos, penthouses e duplex">
+<span>Apartamentos, penthouses e duplex</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-casas/com-moradias/#municipality-search" title="Casas e moradias">
+<span>Casas e moradias</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-casas/com-casa-rusticas/#municipality-search" title="Casas rústicas">
+<span>Casas rústicas</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-casas/com-duplex/#municipality-search" title="Duplex">
+<span>Duplex</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-casas/com-recuados/#municipality-search" title="Penthouses">
+<span>Penthouses</span>
+</a>
+</li>
+</ul>
+</div>
+<div id="filter-rooms" class="last-level-menu  --desktop">
+<ul>
+<li class="">
+<a href="/comprar-casas/com-apartamentos,t0/#municipality-search" title="T0">
+<span>T0</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-casas/com-apartamentos,t1/#municipality-search" title="T1">
+<span>T1</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-casas/com-apartamentos,t2/#municipality-search" title="T2">
+<span>T2</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-casas/com-apartamentos,t3/#municipality-search" title="T3">
+<span>T3</span>
+</a>
+</li>
+<li class="">
+<a href="/comprar-casas/com-apartamentos,t4-t5/#municipality-search" title="T4 ou superior">
+<span>T4 ou superior</span>
+</a>
+</li>
+</ul>
+</div>
+<nav class="locations-list" aria-labelledby="municipalityTitle">
+<ul class="locations-list__links">
+<li>
+<a href="/geo/comprar-casas/acores/" title="Comprar casas Açores"><h3 class="region-title">Açores</h3></a>
+</li>
+<li>
+<p>791</p>
+<a href="/comprar-casas/sao-miguel-ilha-dos-acores/concelhos-freguesias" class="subregion" title="Comprar casas São Miguel (Ilha dos Açores)">São Miguel (Ilha dos Açores)</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/ponta-delgada/" class="icon-elbow --indent" title="Comprar casas Ponta Delgada">Ponta Delgada</a>
+</li>
+</ul>
+</li>
+<li>
+<p>341</p>
+<a href="/comprar-casas/terceira-ilha-dos-acores/concelhos-freguesias" class="subregion" title="Comprar casas Terceira (Ilha dos Açores)">Terceira (Ilha dos Açores)</a>
+</li>
+</ul>
+<ul class="locations-list__links">
+<li>
+<a href="/geo/comprar-casas/alentejo/" title="Comprar casas Alentejo"><h3 class="region-title">Alentejo</h3></a>
+</li>
+<li>
+<p>1.749</p>
+<a href="/comprar-casas/beja-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Beja">Beja</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/odemira/vila-nova-de-milfontes/" class="icon-elbow --indent" title="Comprar casas Vila Nova de Milfontes">Vila Nova de Milfontes</a>
+</li>
+</ul>
+</li>
+<li>
+<p>1.624</p>
+<a href="/comprar-casas/evora-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Évora">Évora</a>
+</li>
+<li>
+<p>1.363</p>
+<a href="/comprar-casas/portalegre-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Portalegre">Portalegre</a>
+</li>
+<li>
+<p>4.210</p>
+<a href="/comprar-casas/santarem-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Santarém">Santarém</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/torres-novas/" class="icon-elbow --indent" title="Comprar casas Torres Novas">Torres Novas</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="locations-list__links">
+<li>
+<a href="/comprar-casas/faro-distrito/" title="Comprar casas Algarve"><h3 class="region-title">Algarve</h3></a>
+</li>
+<li>
+<p>18.557</p>
+<a href="/comprar-casas/faro-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Faro">Faro</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/albufeira/" class="icon-elbow --indent" title="Comprar casas Albufeira">Albufeira</a>
+</li>
+<li>
+<a href="/comprar-casas/portimao/alvor/" class="icon-elbow --indent" title="Comprar casas Alvor">Alvor</a>
+</li>
+<li>
+<a href="/comprar-casas/tavira/conceicao-e-cabanas-de-tavira/" class="icon-elbow --indent" title="Comprar casas Conceição e Cabanas de Tavira">Conceição e Cabanas de Tavira</a>
+</li>
+<li>
+<a href="/comprar-casas/faro/" class="icon-elbow --indent" title="Comprar casas Faro">Faro</a>
+</li>
+<li>
+<a href="/comprar-casas/lagos/" class="icon-elbow --indent" title="Comprar casas Lagos">Lagos</a>
+</li>
+<li>
+<a href="/comprar-casas/vila-real-de-santo-antonio/monte-gordo/" class="icon-elbow --indent" title="Comprar casas Monte Gordo">Monte Gordo</a>
+</li>
+<li>
+<a href="/comprar-casas/portimao/" class="icon-elbow --indent" title="Comprar casas Portimão">Portimão</a>
+</li>
+<li>
+<a href="/comprar-casas/loule/quarteira/" class="icon-elbow --indent" title="Comprar casas Quarteira">Quarteira</a>
+</li>
+<li>
+<a href="/comprar-casas/vila-do-bispo/sagres/" class="icon-elbow --indent" title="Comprar casas Sagres">Sagres</a>
+</li>
+<li>
+<a href="/comprar-casas/tavira/" class="icon-elbow --indent" title="Comprar casas Tavira">Tavira</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="locations-list__links">
+<li>
+<a href="/geo/comprar-casas/area-metropolitana-de-lisboa/" title="Comprar casas Área Metropolitana de Lisboa"><h3 class="region-title">Área Metropolitana de Lisboa</h3></a>
+</li>
+<li>
+<p>27.136</p>
+<a href="/comprar-casas/lisboa-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Lisboa">Lisboa</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/cascais/" class="icon-elbow --indent" title="Comprar casas Cascais">Cascais</a>
+</li>
+<li>
+<a href="/comprar-casas/mafra/ericeira/" class="icon-elbow --indent" title="Comprar casas Ericeira">Ericeira</a>
+</li>
+<li>
+<a href="/comprar-casas/lisboa/" class="icon-elbow --indent" title="Comprar casas Lisboa">Lisboa</a>
+</li>
+<li>
+<a href="/comprar-casas/odivelas/" class="icon-elbow --indent" title="Comprar casas Odivelas">Odivelas</a>
+</li>
+<li>
+<a href="/comprar-casas/oeiras/" class="icon-elbow --indent" title="Comprar casas Oeiras">Oeiras</a>
+</li>
+<li>
+<a href="/comprar-casas/torres-vedras/" class="icon-elbow --indent" title="Comprar casas Torres Vedras">Torres Vedras</a>
+</li>
+</ul>
+</li>
+<li>
+<p>12.603</p>
+<a href="/comprar-casas/setubal-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Setúbal">Setúbal</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/almada/" class="icon-elbow --indent" title="Comprar casas Almada">Almada</a>
+</li>
+<li>
+<a href="/comprar-casas/barreiro/" class="icon-elbow --indent" title="Comprar casas Barreiro">Barreiro</a>
+</li>
+<li>
+<a href="/comprar-casas/almada/costa-de-caparica/" class="icon-elbow --indent" title="Comprar casas Costa de Caparica">Costa de Caparica</a>
+</li>
+<li>
+<a href="/comprar-casas/montijo/" class="icon-elbow --indent" title="Comprar casas Montijo">Montijo</a>
+</li>
+<li>
+<a href="/comprar-casas/sesimbra/" class="icon-elbow --indent" title="Comprar casas Sesimbra">Sesimbra</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="locations-list__links">
+<li>
+<a href="/geo/comprar-casas/centro/" title="Comprar casas Centro"><h3 class="region-title">Centro</h3></a>
+</li>
+<li>
+<p>5.845</p>
+<a href="/comprar-casas/aveiro-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Aveiro">Aveiro</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/aveiro/" class="icon-elbow --indent" title="Comprar casas Aveiro">Aveiro</a>
+</li>
+<li>
+<a href="/comprar-casas/espinho/" class="icon-elbow --indent" title="Comprar casas Espinho">Espinho</a>
+</li>
+<li>
+<a href="/comprar-casas/santa-maria-da-feira/" class="icon-elbow --indent" title="Comprar casas Santa Maria da Feira">Santa Maria da Feira</a>
+</li>
+</ul>
+</li>
+<li>
+<p>2.937</p>
+<a href="/comprar-casas/castelo-branco-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Castelo Branco">Castelo Branco</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/castelo-branco/" class="icon-elbow --indent" title="Comprar casas Castelo Branco">Castelo Branco</a>
+</li>
+</ul>
+</li>
+<li>
+<p>4.207</p>
+<a href="/comprar-casas/coimbra-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Coimbra">Coimbra</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/coimbra/" class="icon-elbow --indent" title="Comprar casas Coimbra">Coimbra</a>
+</li>
+<li>
+<a href="/comprar-casas/figueira-da-foz/" class="icon-elbow --indent" title="Comprar casas Figueira da Foz">Figueira da Foz</a>
+</li>
+</ul>
+</li>
+<li>
+<p>1.399</p>
+<a href="/comprar-casas/guarda-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Guarda">Guarda</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/guarda/" class="icon-elbow --indent" title="Comprar casas Guarda">Guarda</a>
+</li>
+</ul>
+</li>
+<li>
+<p>5.887</p>
+<a href="/comprar-casas/leiria-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Leiria">Leiria</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/caldas-da-rainha/" class="icon-elbow --indent" title="Comprar casas Caldas da Rainha">Caldas da Rainha</a>
+</li>
+<li>
+<a href="/comprar-casas/leiria/" class="icon-elbow --indent" title="Comprar casas Leiria">Leiria</a>
+</li>
+<li>
+<a href="/comprar-casas/marinha-grande/" class="icon-elbow --indent" title="Comprar casas Marinha Grande">Marinha Grande</a>
+</li>
+<li>
+<a href="/comprar-casas/nazare/" class="icon-elbow --indent" title="Comprar casas Nazaré">Nazaré</a>
+</li>
+<li>
+<a href="/comprar-casas/peniche/" class="icon-elbow --indent" title="Comprar casas Peniche">Peniche</a>
+</li>
+<li>
+<a href="/comprar-casas/pombal/" class="icon-elbow --indent" title="Comprar casas Pombal">Pombal</a>
+</li>
+<li>
+<a href="/comprar-casas/alcobaca/sao-martinho-do-porto/" class="icon-elbow --indent" title="Comprar casas São Martinho do Porto">São Martinho do Porto</a>
+</li>
+</ul>
+</li>
+<li>
+<p>3.380</p>
+<a href="/comprar-casas/viseu-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Viseu">Viseu</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/viseu/" class="icon-elbow --indent" title="Comprar casas Viseu">Viseu</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="locations-list__links">
+<li>
+<a href="/geo/comprar-casas/madeira/" title="Comprar casas Madeira"><h3 class="region-title">Madeira</h3></a>
+</li>
+<li>
+<p>3.746</p>
+<a href="/comprar-casas/madeira-ilha/concelhos-freguesias" class="subregion" title="Comprar casas Madeira (Ilha)">Madeira (Ilha)</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/funchal/" class="icon-elbow --indent" title="Comprar casas Funchal">Funchal</a>
+</li>
+</ul>
+</li>
+<li>
+<p>85</p>
+<a href="/comprar-casas/porto-santo-ilha/concelhos-freguesias" class="subregion" title="Comprar casas Porto Santo (Ilha)">Porto Santo (Ilha)</a>
+</li>
+</ul>
+<ul class="locations-list__links">
+<li>
+<a href="/geo/comprar-casas/norte/" title="Comprar casas Norte"><h3 class="region-title">Norte</h3></a>
+</li>
+<li>
+<p>7.483</p>
+<a href="/comprar-casas/braga-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Braga">Braga</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/barcelos/" class="icon-elbow --indent" title="Comprar casas Barcelos">Barcelos</a>
+</li>
+<li>
+<a href="/comprar-casas/braga/" class="icon-elbow --indent" title="Comprar casas Braga">Braga</a>
+</li>
+</ul>
+</li>
+<li>
+<p>945</p>
+<a href="/comprar-casas/braganca-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Bragança">Bragança</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/braganca/" class="icon-elbow --indent" title="Comprar casas Bragança">Bragança</a>
+</li>
+</ul>
+</li>
+<li>
+<p>22.966</p>
+<a href="/comprar-casas/porto-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Porto">Porto</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/maia/" class="icon-elbow --indent" title="Comprar casas Maia">Maia</a>
+</li>
+<li>
+<a href="/comprar-casas/matosinhos/" class="icon-elbow --indent" title="Comprar casas Matosinhos">Matosinhos</a>
+</li>
+<li>
+<a href="/comprar-casas/penafiel/" class="icon-elbow --indent" title="Comprar casas Penafiel">Penafiel</a>
+</li>
+<li>
+<a href="/comprar-casas/porto/" class="icon-elbow --indent" title="Comprar casas Porto">Porto</a>
+</li>
+<li>
+<a href="/comprar-casas/povoa-de-varzim/" class="icon-elbow --indent" title="Comprar casas Póvoa de Varzim">Póvoa de Varzim</a>
+</li>
+<li>
+<a href="/comprar-casas/santo-tirso/" class="icon-elbow --indent" title="Comprar casas Santo Tirso">Santo Tirso</a>
+</li>
+<li>
+<a href="/comprar-casas/valongo/" class="icon-elbow --indent" title="Comprar casas Valongo">Valongo</a>
+</li>
+<li>
+<a href="/comprar-casas/vila-nova-de-gaia/" class="icon-elbow --indent" title="Comprar casas Vila Nova de Gaia">Vila Nova de Gaia</a>
+</li>
+<li>
+<a href="/comprar-casas/vila-do-conde/" class="icon-elbow --indent" title="Comprar casas Vila do Conde">Vila do Conde</a>
+</li>
+</ul>
+</li>
+<li>
+<p>3.865</p>
+<a href="/comprar-casas/viana-do-castelo-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Viana do Castelo">Viana do Castelo</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/ponte-de-lima/" class="icon-elbow --indent" title="Comprar casas Ponte de Lima">Ponte de Lima</a>
+</li>
+<li>
+<a href="/comprar-casas/viana-do-castelo/" class="icon-elbow --indent" title="Comprar casas Viana do Castelo">Viana do Castelo</a>
+</li>
+</ul>
+</li>
+<li>
+<p>1.464</p>
+<a href="/comprar-casas/vila-real-distrito/concelhos-freguesias" class="subregion" title="Comprar casas Vila Real">Vila Real</a>
+<ul class="locations-list__municipalities">
+<li>
+<a href="/comprar-casas/vila-real/" class="icon-elbow --indent" title="Comprar casas Vila Real">Vila Real</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</section>
+<section class="links-block-home">
+<h2 class="screen-reader-only">Serviços do idealista</h2>
+<div class="content">
+<nav aria-label="Estás à procura de casa?">
+<h3>
+Estás à procura de casa?
+</h3>
+<ul>
+<li>
+<span aria-current="page">Motor de pesquisa principal</span>
+</li>
+<li>
+<a href="/imoveis-da-banca" title="Apartamentos de bancos">
+Apartamentos de bancos
+</a>
+</li>
+<li>
+<a href="/properties-for-sale-in-portugal" title="Casas à venda em Portugal">
+Casas à venda em Portugal
+</a>
+</li>
+<li>
+<a href="/long-term-rentals-in-portugal" title="Arrendamento de casas em Portugal">
+Arrendamento de casas em Portugal
+</a>
+</li>
+<li>
+<a href="/apartamentos-para-arrendar" title="Casas e apartamentos em arrendamento">
+Casas e apartamentos em arrendamento
+</a>
+</li>
+<li>
+<a href="/apartamentos-para-dividir" title="Apartamentos partilhados">
+Apartamentos partilhados
+</a>
+</li>
+<li>
+<a href="https://www.idealista.pt/investimento-imobiliario/#/" title="Oportunidades de investimento">
+Oportunidades de investimento
+</a>
+</li>
+<li>
+<a href="https://pt.rentalia.com/" title="Rentalia, arrendamento para férias">
+Rentalia, arrendamento para férias
+</a>
+</li>
+<li>
+<a href="https://www.idealista.pt/media/relatorios-preco-habitacao/" title="Relatórios de preços">
+Relatórios de preços
+</a>
+</li>
+<li>
+<a href="https://www.idealista.pt/maps/" title="idealista maps">
+idealista maps
+</a>
+</li>
+<li>
+<a href="/luxury-homes-portugal" title="Apartamentos e casas de luxo à venda em Portugal">
+Apartamentos e casas de luxo à venda em Portugal
+</a>
+</li>
+<li>
+<a href="/luxury-rentals-portugal" title="Apartamentos e casas de luxo para arrendar em Portugal">
+Apartamentos e casas de luxo para arrendar em Portugal
+</a>
+</li>
+</ul>
+</nav>
+<nav aria-label="Tens um imóvel?">
+<h3>
+Tens um imóvel?
+</h3>
+<ul>
+<li>
+<a href="/info/novo-anuncio" title="Publica o teu anúncio grátis">
+Publica o teu anúncio grátis
+</a>
+</li>
+<li>
+<a href="/proprietarios/" title="Área do proprietário">
+Área do proprietário
+</a>
+</li>
+<li>
+<a href="/info/truques-fazer-fotos-e-videos" title="Melhorar as fotos do teu anúncio">
+Melhorar as fotos do teu anúncio
+</a>
+</li>
+<li>
+<a href="/avaliacao-de-imoveis/" title="Avalia grátis qualquer imóvel">
+Avalia grátis qualquer imóvel
+</a>
+</li>
+<li>
+<a href="/escolher-agencia-imobiliaria/" title="Procurar agências para vender facilmente a tua casa">
+Procurar agências para vender facilmente a tua casa
+</a>
+</li>
+<li>
+<a href="/quero-vender-a-minha-casa/" title="Guia sobre como vender a tua casa">
+Guia sobre como vender a tua casa
+</a>
+</li>
+<li>
+<a href="https://www.idealista.pt/seguros/incumprimento-rendas/" title="Garantir 12 mensalidades com um seguro de incumprimento">
+Garantir 12 mensalidades com um seguro de incumprimento
+</a>
+</li>
+<li>
+<a href="https://www.idealista.pt/obras-em-casa/" title="Queres fazer obras em casa?">
+Queres fazer obras em casa?
+</a>
+</li>
+</ul>
+</nav>
+<nav aria-label="És profissional imobiliário?">
+<h3>
+És profissional imobiliário?
+</h3>
+<ul>
+<li>
+<a href="/novo-profissional" title="Publica os teus imóveis profissionais">
+Publica os teus imóveis profissionais
+</a>
+</li>
+<li>
+<a href="/login" title="Já és cliente? Entra na tua conta">
+Já és cliente? Entra na tua conta
+</a>
+</li>
+<li>
+<a href="https://www.idealista.pt/cursos/" title="Cursos imobiliários">
+Cursos imobiliários
+</a>
+</li>
+<li>
+<a href="/info/publicidade" title="Publicidade no idealista">
+Publicidade no idealista
+</a>
+</li>
+<li>
+<a href="https://www.idealista.pt/tools/" title="idealista/tools: Software de gestão para imobiliárias">
+idealista/tools: Software de gestão para imobiliárias
+</a>
+</li>
+<li>
+<a href="/tools/software-recomendado-para-imobiliarias" title="Outros softwares recomendados">
+Outros softwares recomendados
+</a>
+</li>
+<li>
+<a href="https://www.idealista.pt/data/" title="idealista/data: tecnologia para a análise imobiliária">
+idealista/data: tecnologia para a análise imobiliária
+</a>
+</li>
+<li>
+<a href="https://www.avaibook.com/pt-pt/" title="Avaibook: software para gerir os teus arrendamentos turísticos">
+Avaibook: software para gerir os teus arrendamentos turísticos
+</a>
+</li>
+<li>
+<a href="https://www.hcpro.pt/" title="HCPro - Software de Gestão Imobiliária">
+HCPro - Software de Gestão Imobiliária
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</section>
+<footer class="main-footer">
+<div class="content">
+<span role="heading" aria-level="2" class="icon-idealista-icon">
+<span class="screen-reader-only">idealista</span>
+</span>
+<div class="lang-selector lang-responsive">
+<span class="lang-selector--lang-selected icon-arrow-dropdown">
+<span class="flag lang-pt"></span>
+<span class="lang-text">Português</span>
+</span>
+<ul class="lang-selector--lang-options" data-url-attribute="/user/update-user-language" data-user-authenticated="false">
+<li>
+<a rel="nofollow" id="idioma-en" value="en" href="/en/" data-markup="cambio::idioma::pie::en">
+<span>
+<span role="img" class="flag lang-en"></span>English
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-es" value="es" href="/es/" data-markup="cambio::idioma::pie::es">
+<span>
+<span role="img" class="flag lang-es"></span>Español
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-fr" value="fr" href="/fr/" data-markup="cambio::idioma::pie::fr">
+<span>
+<span role="img" class="flag lang-fr"></span>Français
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-de" value="de" href="/de/" data-markup="cambio::idioma::pie::de">
+<span>
+<span role="img" class="flag lang-de"></span>Deutsch
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-it" value="it" href="/it/" data-markup="cambio::idioma::pie::it">
+<span>
+<span role="img" class="flag lang-it"></span>Italiano
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-da" value="da" href="/da/" data-markup="cambio::idioma::pie::da">
+<span>
+<span role="img" class="flag lang-da"></span>Dansk
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-fi" value="fi" href="/fi/" data-markup="cambio::idioma::pie::fi">
+<span>
+<span role="img" class="flag lang-fi"></span>Suomi
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-no" value="no" href="/no/" data-markup="cambio::idioma::pie::no">
+<span>
+<span role="img" class="flag lang-no"></span>Norsk
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-nl" value="nl" href="/nl/" data-markup="cambio::idioma::pie::nl">
+<span>
+<span role="img" class="flag lang-nl"></span>Nederlands
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-pl" value="pl" href="/pl/" data-markup="cambio::idioma::pie::pl">
+<span>
+<span role="img" class="flag lang-pl"></span>Polski
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-ro" value="ro" href="/ro/" data-markup="cambio::idioma::pie::ro">
+<span>
+<span role="img" class="flag lang-ro"></span>Română
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-ru" value="ru" href="/ru/" data-markup="cambio::idioma::pie::ru">
+<span>
+<span role="img" class="flag lang-ru"></span>Русский
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-sv" value="sv" href="/sv/" data-markup="cambio::idioma::pie::sv">
+<span>
+<span role="img" class="flag lang-sv"></span>Svenska
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-el" value="el" href="/el/" data-markup="cambio::idioma::pie::el">
+<span>
+<span role="img" class="flag lang-el"></span>Ελληνικά
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-zh" value="zh" href="/zh/" data-markup="cambio::idioma::pie::zh">
+<span>
+<span role="img" class="flag lang-zh"></span>中文
+</span>
+</a>
+</li>
+<li>
+<a rel="nofollow" id="idioma-uk" value="uk" href="/uk/" data-markup="cambio::idioma::pie::uk">
+<span>
+<span role="img" class="flag lang-uk"></span>Українська
+</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="footer-links-about">
+<nav>
+<h3>Sobre o idealista</h3>
+<ul>
+<li>
+<a href="/media/sobre-nos/" title="Sobre nós">
+Sobre nós
+</a>
+</li>
+<li>
+<a href="/media/" title="Media">
+Media
+</a>
+</li>
+<li>
+<a href="/info/trabalha-connosco" title="Trabalha connosco">
+Trabalha connosco
+</a>
+</li>
+<li>
+<a href="https://www.idealista.pt/credito-habitacao" title="idealista/créditohabitação">
+idealista/créditohabitação
+</a>
+</li>
+<li>
+<a href="/data/" title="idealista/data">
+idealista/data
+</a>
+</li>
+<li>
+<a href="/news/" title="idealista/news">
+idealista/news
+</a>
+</li>
+<li>
+<a href="/seguros/" title="idealista/seguros">
+idealista/seguros
+</a>
+</li>
+</ul>
+</nav>
+<nav>
+<h3>Ajuda</h3>
+<ul>
+<li>
+<a href="/apoioutilizador/" title="Perguntas frequentes (FAQs)">
+Perguntas frequentes (FAQs)
+</a>
+</li>
+<li>
+<a href="/info/contacta-connosco" title="Contacta com o idealista">
+Contacta com o idealista
+</a>
+</li>
+<li>
+<a href="/apoioutilizador/artigos/politica-de-privacidade/" title="Privacidade">
+Privacidade
+</a>
+</li>
+<li>
+<a href="/info/cookie-policy" title="Política de cookies">
+Política de cookies
+</a>
+</li>
+<li>
+<a href="/apoioutilizador/artigos/aviso-legal-e-condicoes-gerais/" title="Condições gerais">
+Condições gerais
+</a>
+</li>
+</ul>
+</nav>
+<nav>
+<h3>
+Outros países
+</h3>
+<ul>
+<li>
+<a href="https://www.idealista.com/pt/" title="idealista Espanha" data-markup="cambio::pais::pie::com">
+idealista Espanha
+</a>
+</li>
+<li>
+<a href="https://www.idealista.it/pt/" title="idealista Itália" data-markup="cambio::pais::pie::it">
+idealista Itália
+</a>
+</li>
+</ul>
+</nav>
+</div>
+<div class="footer-links-social">
+<div class="social-stores-links">
+<h3>
+Por telemóvel ou Tablet
+</h3>
+<nav class="app-stores">
+<a href="https://apps.apple.com/pt/app/idealista.com/id465958311" title="App Store" class="icon-itunes-link"></a>
+<a href="https://play.google.com/store/apps/details?id=com.idealista.android&amp;hl=pt" title="Google Play" class="icon-android-link"></a>
+<a href="https://appgallery.huawei.com/app/C101196223?channelId=idealista&amp;id=ea9d78a5dfc54b8e8a7f1c5e8f1f083e&amp;s=FC3DCED1261C2C2C5624748A104DEB37D2EB945F72175B74A6FDB07C7B7169F0&amp;detailType=0&amp;v=" title="HUAWEI AppGallery" class="icon-huawei-link"></a>
+</nav>
+<nav class="social-links">
+<a href="https://www.facebook.com/idealista.pt/" title="Segue-nos no facebook" class="icon-facebook">
+<span>Segue-nos no facebook</span>
+</a>
+<a href="https://www.youtube.com/user/idealistapt" title="Notícias imobiliárias no youtube" class="icon-youtube">
+<span>Notícias imobiliárias no youtube</span>
+</a>
+<a href="https://instagram.com/idealistapt/" title="Segue-nos no instagram" class="icon-instagram-figure">
+<span>Segue-nos no instagram</span>
+</a>
+</nav>
+</div>
+<strong>idealista</strong>
+<span class="ide-copyright"> Copyright © 2000-2025 </span>
+</div>
+</div>
+</footer>
+<script>
+
+
+	
+		var communicatorConfig = {
+			enabled: true,
+			endPointURL: '//commt.idealista.pt',
+			authCookieName: 'cc',
+			refreshTokenURL: '/communicator/refresh-token.ajax'
+		};
+		
+
+
+</script>
+<script>
+  var privacyPolicyConfig = {
+    isPrivateUser: false,
+    isDefaultAdmin: false
+  };
+</script>
+<script>
+
+    var communicationNotificationConfig = {
+        
+        
+    };
+</script>
+<script>
+
+    var config = config || {};
+    config.userAuthenticated = false;
+    config.liveSearchUrlRetriever = '/ajax/livesearchlistingurlretriever.ajax';
+    config.drawYourSearchUrlRetriever = '/ajax/drawyoursearchurlretriever.ajax';
+    config.drawYourSearchIsInsideIdealistaArea = '/ajax/drawyoursearchisinsideidealistaarea.ajax';
+    config.searchByTextUrl = '/home/search';
+    config.locale = 'pt';
+    config.zoom = 16;
+    config.defaultParams = {"zoom":"7","latitude":"39.83834", "longitude":"-7.10693"};
+    config.mortgageSimulatorUrl = '/credito-habitacao/simulador-credito-habitacao/';
+    config.propertyValuationUrl = '/avaliacao-de-imoveis/';
+    config.totalUserSearches = 0;
+    config.thereIsLastSearch = false;
+    config.rentaliaLink = 'https://pt.rentalia.com/';
+    config.vacationalOption =  "Para férias";
+    config.templateServiceURL = '/home/datalayer';
+    config.pageViewEventId = 'idealista/portal/home/viewHome';
+    config.operationName = '';
+    config.operation = '1';
+    config.typologyName = '';
+    config.typology = '1';
+    config.isHomeAppSSREnabled = true;
+    config.isNewIconsActive = true;
+    config.isMultizoneSearchLinkVisible = false;
+    config.markupV2 = {
+        isEnabled: true,
+        url: '/home/datalayer',
+    };
+    config.logo = false ? "pride" : "default"
+
+    var newConfig = newConfig || {};
+    newConfig.isHome = true;
+</script>
+<script type="text/microtemplate" id="saving-warning-tmpl">
+
+		
+
+
+
+ 
+
+
+
+
+
+
+
+
+A poupança não pode ser superior ou igual ao preço do imóvel
+
+</script>
+<script defer="" src="https://st3.idealista.pt/static/react/projects/loginAndRegister/dist/LoginInPlace.js?20251127-1714"></script>
+<script defer="" src="https://st3.idealista.pt/static/common/release/home/home.js?20251127-1714"></script>
+<script defer="" src="https://st3.idealista.pt/static/react/home/dist/main.js?20251127-1714"></script>
+<script defer="" src="https://st3.idealista.pt/static/react/projects/saveSearch/dist/SaveSearchModal.js?20251127-1714"></script>
+
+
+</body></html>
