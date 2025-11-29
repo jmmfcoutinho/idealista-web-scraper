@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from idealista_scraper.config.settings import (
+    AsyncConfig,
     DatabaseConfig,
     FilterConfig,
     RunConfig,
@@ -13,6 +14,7 @@ from idealista_scraper.config.settings import (
 )
 
 __all__ = [
+    "AsyncConfig",
     "DatabaseConfig",
     "FilterConfig",
     "RunConfig",

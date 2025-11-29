@@ -296,7 +296,7 @@ class TestParseConcelhosPage:
         html = load_fixture("district_concelhos.html")
         concelhos = parse_concelhos_page(html)
 
-        # Should parse 7 concelhos
+        # Should parse 7 concelhos from breadcrumb-dropdown-subitem-list
         assert len(concelhos) == 7
 
     def test_parse_concelhos_page_info(self) -> None:
@@ -308,17 +308,16 @@ class TestParseConcelhosPage:
         cascais = next(c for c in concelhos if c.slug == "cascais")
         assert isinstance(cascais, ParsedConcelhoLink)
         assert cascais.name == "Cascais"
-        assert cascais.href == "/comprar-casas/cascais/"
+        assert cascais.href == "/comprar-casas/cascais/concelhos-freguesias"
 
-    def test_parse_concelhos_page_skips_special_pages(self) -> None:
-        """Test that special pages like concelhos-freguesias are skipped."""
+    def test_parse_concelhos_page_skips_district_links(self) -> None:
+        """Test that district links are skipped."""
         html = load_fixture("district_concelhos.html")
         concelhos = parse_concelhos_page(html)
 
-        # Should not include special pages
+        # Should not include district links (those ending with -distrito)
         slugs = [c.slug for c in concelhos]
-        assert "concelhos-freguesias" not in slugs
-        assert "lisboa-distrito" not in slugs
+        assert not any(slug.endswith("-distrito") for slug in slugs)
 
     def test_parse_concelhos_page_deduplicates(self) -> None:
         """Test that duplicate concelhos are removed."""

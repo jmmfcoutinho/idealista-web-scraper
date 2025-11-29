@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 from datetime import datetime
 from pathlib import Path
 from typing import Annotated
@@ -10,7 +11,16 @@ import typer
 
 from idealista_scraper.config.settings import load_config
 from idealista_scraper.db import get_session_factory, init_db
-from idealista_scraper.scraping import ListingsScraper, PreScraper, create_client
+from idealista_scraper.scraping import (
+    AsyncDetailsScraper,
+    AsyncListingsScraper,
+    AsyncPreScraper,
+    DetailsScraper,
+    ListingsScraper,
+    PreScraper,
+    create_async_client,
+    create_client,
+)
 from idealista_scraper.utils.billing import CostTracker, get_balance
 from idealista_scraper.utils.logging import get_logger, setup_logging
 
@@ -87,6 +97,24 @@ TrackCostOption = Annotated[
     ),
 ]
 
+AsyncOption = Annotated[
+    bool,
+    typer.Option(
+        "--async/--sync",
+        help="Use async concurrent scraping (faster but higher cost).",
+    ),
+]
+
+ConcurrencyOption = Annotated[
+    int,
+    typer.Option(
+        "--concurrency",
+        help="Number of concurrent browser sessions (only with --async).",
+        min=1,
+        max=20,
+    ),
+]
+
 
 def _build_cli_overrides(
     operation: str | None = None,
@@ -152,6 +180,8 @@ def prescrape(
     verbose: VerboseOption = False,
     dry_run: DryRunOption = False,
     track_cost: TrackCostOption = False,
+    use_async: AsyncOption = False,
+    concurrency: ConcurrencyOption = 5,
 ) -> None:
     """Scrape districts and concelhos from the Idealista homepage.
 
@@ -163,8 +193,18 @@ def prescrape(
     run_config = load_config(config_path=config)
     logger.info("Loaded configuration: %s", run_config.model_dump())
 
+    # Warn if concurrency is set without async mode
+    if concurrency != 5 and not use_async:
+        logger.warning(
+            "--concurrency has no effect without --async. "
+            "Use --async to enable concurrent scraping."
+        )
+
     if dry_run:
         logger.info("[DRY RUN] Would run pre-scraper")
+        logger.info("[DRY RUN] Mode: %s", "async" if use_async else "sync")
+        if use_async:
+            logger.info("[DRY RUN] Concurrency: %d browser sessions", concurrency)
         logger.info("[DRY RUN] Database URL: %s", run_config.database.url)
         logger.info(
             "[DRY RUN] Using Bright Data: %s", run_config.scraping.use_brightdata
@@ -175,24 +215,43 @@ def prescrape(
     logger.info("Initializing database at %s", run_config.database.url)
     init_db(run_config.database.url)
 
-    # Create session factory and client
+    # Create session factory
     session_factory = get_session_factory(run_config.database.url)
-    client = create_client(run_config.scraping)
-
-    # Run pre-scraper
-    pre_scraper = PreScraper(client=client, session_factory=session_factory)
-
-    def run_prescraper() -> dict[str, int]:
-        return pre_scraper.run()
 
     try:
-        if track_cost:
-            with CostTracker() as tracker:
-                stats = run_prescraper()
-            if tracker.report:
-                typer.echo(f"\n💰 {tracker.report}")
+        if use_async:
+            # Use async pre-scraper
+            async def run_async_prescraper() -> dict[str, int]:
+                client = create_async_client(run_config.scraping)
+                scraper = AsyncPreScraper(
+                    client=client,
+                    session_factory=session_factory,
+                    concurrency=concurrency,
+                )
+                return await scraper.run()
+
+            if track_cost:
+                with CostTracker() as tracker:
+                    stats = asyncio.run(run_async_prescraper())
+                if tracker.report:
+                    typer.echo(f"\n💰 {tracker.report}")
+            else:
+                stats = asyncio.run(run_async_prescraper())
         else:
-            stats = run_prescraper()
+            # Use sync pre-scraper
+            client = create_client(run_config.scraping)
+            pre_scraper = PreScraper(client=client, session_factory=session_factory)
+
+            def run_prescraper() -> dict[str, int]:
+                return pre_scraper.run()
+
+            if track_cost:
+                with CostTracker() as tracker:
+                    stats = run_prescraper()
+                if tracker.report:
+                    typer.echo(f"\n💰 {tracker.report}")
+            else:
+                stats = run_prescraper()
 
         logger.info(
             "Pre-scrape completed successfully: "
@@ -220,6 +279,8 @@ def scrape(
     verbose: VerboseOption = False,
     dry_run: DryRunOption = False,
     track_cost: TrackCostOption = False,
+    use_async: AsyncOption = False,
+    concurrency: ConcurrencyOption = 5,
 ) -> None:
     """Scrape listing cards from search results.
 
@@ -242,8 +303,18 @@ def scrape(
         logger.error("No locations configured. Use --district or --concelho.")
         raise typer.Exit(code=1)
 
+    # Warn if concurrency is set without async mode
+    if concurrency != 5 and not use_async:
+        logger.warning(
+            "--concurrency has no effect without --async. "
+            "Use --async to enable concurrent scraping."
+        )
+
     if dry_run:
         logger.info("[DRY RUN] Would scrape listings for: %s", run_config.locations)
+        logger.info("[DRY RUN] Mode: %s", "async" if use_async else "sync")
+        if use_async:
+            logger.info("[DRY RUN] Concurrency: %d browser sessions", concurrency)
         logger.info("[DRY RUN] Operations: %s", run_config.operation)
         logger.info("[DRY RUN] Property types: %s", run_config.property_types)
         logger.info("[DRY RUN] Database URL: %s", run_config.database.url)
@@ -257,28 +328,48 @@ def scrape(
     logger.info("Initializing database at %s", run_config.database.url)
     init_db(run_config.database.url)
 
-    # Create session factory and client
+    # Create session factory
     session_factory = get_session_factory(run_config.database.url)
-    client = create_client(run_config.scraping)
-
-    # Run listings scraper
-    scraper = ListingsScraper(
-        client=client,
-        session_factory=session_factory,
-        config=run_config,
-    )
-
-    def run_scraper() -> dict[str, int]:
-        return scraper.run()
 
     try:
-        if track_cost:
-            with CostTracker() as tracker:
-                stats = run_scraper()
-            if tracker.report:
-                typer.echo(f"\n💰 {tracker.report}")
+        if use_async:
+            # Use async listings scraper
+            async def run_async_scraper() -> dict[str, int]:
+                client = create_async_client(run_config.scraping)
+                scraper = AsyncListingsScraper(
+                    client=client,
+                    session_factory=session_factory,
+                    config=run_config,
+                    concurrency=concurrency,
+                )
+                return await scraper.run()
+
+            if track_cost:
+                with CostTracker() as tracker:
+                    stats = asyncio.run(run_async_scraper())
+                if tracker.report:
+                    typer.echo(f"\n💰 {tracker.report}")
+            else:
+                stats = asyncio.run(run_async_scraper())
         else:
-            stats = run_scraper()
+            # Use sync listings scraper
+            client = create_client(run_config.scraping)
+            scraper = ListingsScraper(
+                client=client,
+                session_factory=session_factory,
+                config=run_config,
+            )
+
+            def run_scraper() -> dict[str, int]:
+                return scraper.run()
+
+            if track_cost:
+                with CostTracker() as tracker:
+                    stats = run_scraper()
+                if tracker.report:
+                    typer.echo(f"\n💰 {tracker.report}")
+            else:
+                stats = run_scraper()
 
         logger.info(
             "Scrape completed successfully: "
@@ -305,6 +396,8 @@ def scrape_details(
     verbose: VerboseOption = False,
     dry_run: DryRunOption = False,
     track_cost: TrackCostOption = False,
+    use_async: AsyncOption = False,
+    concurrency: ConcurrencyOption = 5,
 ) -> None:
     """Scrape detailed information for individual listings.
 
@@ -316,8 +409,18 @@ def scrape_details(
     run_config = load_config(config_path=config)
     logger.info("Loaded configuration: %s", run_config.model_dump())
 
+    # Warn if concurrency is set without async mode
+    if concurrency != 5 and not use_async:
+        logger.warning(
+            "--concurrency has no effect without --async. "
+            "Use --async to enable concurrent scraping."
+        )
+
     if dry_run:
         logger.info("[DRY RUN] Would scrape details for up to %s listings", limit)
+        logger.info("[DRY RUN] Mode: %s", "async" if use_async else "sync")
+        if use_async:
+            logger.info("[DRY RUN] Concurrency: %d browser sessions", concurrency)
         logger.info("[DRY RUN] Database URL: %s", run_config.database.url)
         logger.info(
             "[DRY RUN] Using Bright Data: %s", run_config.scraping.use_brightdata
@@ -328,30 +431,48 @@ def scrape_details(
     logger.info("Initializing database at %s", run_config.database.url)
     init_db(run_config.database.url)
 
-    # Create session factory and client
+    # Create session factory
     session_factory = get_session_factory(run_config.database.url)
-    client = create_client(run_config.scraping)
-
-    # Run details scraper
-    from idealista_scraper.scraping import DetailsScraper
-
-    scraper = DetailsScraper(
-        client=client,
-        session_factory=session_factory,
-        max_listings=limit,
-    )
-
-    def run_scraper() -> dict[str, int]:
-        return scraper.run()
 
     try:
-        if track_cost:
-            with CostTracker() as tracker:
-                stats = run_scraper()
-            if tracker.report:
-                typer.echo(f"\n💰 {tracker.report}")
+        if use_async:
+            # Use async details scraper
+            async def run_async_details_scraper() -> dict[str, int]:
+                client = create_async_client(run_config.scraping)
+                scraper = AsyncDetailsScraper(
+                    client=client,
+                    session_factory=session_factory,
+                    max_listings=limit,
+                    concurrency=concurrency,
+                )
+                return await scraper.run()
+
+            if track_cost:
+                with CostTracker() as tracker:
+                    stats = asyncio.run(run_async_details_scraper())
+                if tracker.report:
+                    typer.echo(f"\n💰 {tracker.report}")
+            else:
+                stats = asyncio.run(run_async_details_scraper())
         else:
-            stats = run_scraper()
+            # Use sync details scraper
+            client = create_client(run_config.scraping)
+            scraper = DetailsScraper(
+                client=client,
+                session_factory=session_factory,
+                max_listings=limit,
+            )
+
+            def run_scraper() -> dict[str, int]:
+                return scraper.run()
+
+            if track_cost:
+                with CostTracker() as tracker:
+                    stats = run_scraper()
+                if tracker.report:
+                    typer.echo(f"\n💰 {tracker.report}")
+            else:
+                stats = run_scraper()
 
         logger.info(
             "Scrape details completed successfully: "

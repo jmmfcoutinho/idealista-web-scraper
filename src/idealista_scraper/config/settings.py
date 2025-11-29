@@ -21,6 +21,22 @@ class DatabaseConfig(BaseModel):
     url: str = Field(default="sqlite:///./data/idealista.db")
 
 
+class AsyncConfig(BaseModel):
+    """Configuration for async scraping behavior.
+
+    Attributes:
+        enabled: Whether to use async mode by default.
+        concurrency: Number of concurrent browser sessions.
+        batch_size: Number of pages to fetch per batch.
+        jitter_factor: Random delay variation factor (0.0-1.0).
+    """
+
+    enabled: bool = Field(default=False)
+    concurrency: int = Field(default=5, ge=1, le=20)
+    batch_size: int = Field(default=10, ge=1, le=50)
+    jitter_factor: float = Field(default=0.2, ge=0.0, le=1.0)
+
+
 class ScrapingConfig(BaseModel):
     """Configuration for scraping behavior.
 
@@ -29,12 +45,14 @@ class ScrapingConfig(BaseModel):
         max_retries: Maximum retry attempts for failed requests.
         use_brightdata: Whether to use Bright Data Scraping Browser for scraping.
         max_pages: Maximum pages to scrape per search. None for unlimited.
+        async_config: Configuration for async/concurrent scraping.
     """
 
     delay_seconds: float = Field(default=2.0, ge=0)
     max_retries: int = Field(default=3, ge=0)
     use_brightdata: bool = Field(default=True)
     max_pages: int | None = Field(default=None, ge=1)
+    async_config: AsyncConfig = Field(default_factory=AsyncConfig)
 
 
 class FilterConfig(BaseModel):
@@ -179,6 +197,10 @@ def _flatten_cli_overrides(cli_overrides: dict[str, Any]) -> dict[str, Any]:
         "max_retries": ["scraping", "max_retries"],
         "use_brightdata": ["scraping", "use_brightdata"],
         "max_pages": ["scraping", "max_pages"],
+        "use_async": ["scraping", "async_config", "enabled"],
+        "concurrency": ["scraping", "async_config", "concurrency"],
+        "batch_size": ["scraping", "async_config", "batch_size"],
+        "jitter_factor": ["scraping", "async_config", "jitter_factor"],
         "min_price": ["filters", "min_price"],
         "max_price": ["filters", "max_price"],
         "min_size": ["filters", "min_size"],

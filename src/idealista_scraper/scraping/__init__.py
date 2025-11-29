@@ -2,6 +2,15 @@
 
 from __future__ import annotations
 
+from idealista_scraper.scraping.async_client import (
+    AsyncBrightDataClient,
+    AsyncBrightDataClientError,
+    AsyncPageClient,
+    create_async_client,
+)
+from idealista_scraper.scraping.async_details_scraper import AsyncDetailsScraper
+from idealista_scraper.scraping.async_listings_scraper import AsyncListingsScraper
+from idealista_scraper.scraping.async_pre_scraper import AsyncPreScraper
 from idealista_scraper.scraping.client import (
     WAIT_SELECTOR_DISTRICT_CONCELHOS,
     WAIT_SELECTOR_HOMEPAGE,
@@ -29,7 +38,16 @@ from idealista_scraper.scraping.selectors import (
 )
 
 __all__ = [
-    # Client
+    # Async Client
+    "AsyncBrightDataClient",
+    "AsyncBrightDataClientError",
+    "AsyncPageClient",
+    "create_async_client",
+    # Async Scrapers
+    "AsyncDetailsScraper",
+    "AsyncListingsScraper",
+    "AsyncPreScraper",
+    # Sync Client
     "BrightDataClient",
     "BrightDataClientError",
     "PageClient",
@@ -40,7 +58,7 @@ __all__ = [
     "WAIT_SELECTOR_HOMEPAGE",
     "WAIT_SELECTOR_LISTING_DETAIL",
     "WAIT_SELECTOR_SEARCH_RESULTS",
-    # Scrapers
+    # Sync Scrapers
     "DetailsScraper",
     "ListingsScraper",
     "PreScraper",

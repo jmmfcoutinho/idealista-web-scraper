@@ -17,6 +17,17 @@ scraping:
   # Maximum pages to scrape per search (null for unlimited)
   max_pages: null
 
+  # Async/concurrency settings
+  async:
+    # Whether to use async mode by default
+    enabled: false
+    # Number of concurrent browser sessions (1-20)
+    concurrency: 5
+    # Number of pages to fetch per batch (1-50)
+    batch_size: 10
+    # Random delay variation factor (0.0-1.0) for anti-detection
+    jitter_factor: 0.2
+
 # Filter configuration for listings
 filters:
   min_price: null

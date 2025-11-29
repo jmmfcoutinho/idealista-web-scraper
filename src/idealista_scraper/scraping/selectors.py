@@ -637,6 +637,14 @@ def parse_homepage_districts(html: str) -> list[ParsedDistrictInfo]:
 def parse_concelhos_page(html: str) -> list[ParsedConcelhoLink]:
     """Parse a district's concelhos listing page.
 
+    The concelho links can appear in multiple places:
+    1. Breadcrumb dropdown (breadcrumb-dropdown-subitem-list) - primary source
+    2. Municipality search section (municipality-search) - fallback
+    3. General page links - last resort
+
+    Links have the pattern: /comprar-casas/{concelho}/concelhos-freguesias
+    (which shows parishes within a concelho).
+
     Args:
         html: The HTML content of the concelhos page
               (e.g., /comprar-casas/lisboa-distrito/concelhos-freguesias).
@@ -646,45 +654,36 @@ def parse_concelhos_page(html: str) -> list[ParsedConcelhoLink]:
     """
     soup = BeautifulSoup(html, "lxml")
     concelhos: list[ParsedConcelhoLink] = []
-
-    # Find the municipality-search section
-    section = soup.find("section", class_="municipality-search")
-    if not isinstance(section, Tag):
-        # Fallback: search the whole page
-        section = soup
-
-    # Find all links that point to concelho pages
-    # These match patterns like /comprar-casas/{concelho}/
-    all_links = section.find_all("a", href=True)
-
     seen_slugs: set[str] = set()
 
-    for link in all_links:
-        if not isinstance(link, Tag):
-            continue
-
+    def _add_concelho(link: Tag) -> None:
+        """Add a concelho from a link element if valid."""
         href = _get_attr(link, "href")
         if not href:
-            continue
-
-        # Match concelho links (not concelhos-freguesias or other special pages)
-        # Pattern: /comprar-casas/{slug}/ or /arrendar-casas/{slug}/
-        if not re.match(r"/(comprar|arrendar)-casas/[^/]+/?$", href):
-            continue
-
-        # Skip if this is a special page
-        if "concelhos-freguesias" in href or "distrito" in href:
-            continue
+            return
 
         name = _get_text(link)
         if not name:
-            continue
+            return
 
-        slug = _extract_slug_from_href(href)
+        # Extract slug from href patterns like:
+        # /comprar-casas/cascais/concelhos-freguesias -> cascais
+        # /comprar-casas/cascais/ -> cascais
+        slug = _extract_concelho_slug(href)
+        if not slug:
+            return
+
+        # Skip district links (they end with -distrito)
+        if slug.endswith("-distrito"):
+            return
+
+        # Skip island links
+        if "-ilha" in slug or "ilha-" in slug:
+            return
 
         # Deduplicate by slug
         if slug in seen_slugs:
-            continue
+            return
         seen_slugs.add(slug)
 
         concelhos.append(
@@ -695,5 +694,76 @@ def parse_concelhos_page(html: str) -> list[ParsedConcelhoLink]:
             )
         )
 
+    # Strategy 1: Look in breadcrumb dropdown (real website structure)
+    breadcrumb_list = soup.find("ul", class_="breadcrumb-dropdown-subitem-list")
+    if isinstance(breadcrumb_list, Tag):
+        links = breadcrumb_list.find_all("a", href=True)
+        for link in links:
+            if isinstance(link, Tag):
+                _add_concelho(link)
+
+    # Strategy 2: Look for municipality-search section (test fixtures)
+    if not concelhos:
+        section = soup.find("section", class_="municipality-search")
+        if isinstance(section, Tag):
+            links = section.find_all("a", href=True)
+            for link in links:
+                if isinstance(link, Tag):
+                    href = _get_attr(link, "href") or ""
+                    # Accept both direct concelho links and concelhos-freguesias links
+                    if "/comprar-casas/" in href or "/arrendar-casas/" in href:
+                        _add_concelho(link)
+
+    # Strategy 3: Fallback - search entire page
+    if not concelhos:
+        all_links = soup.find_all("a", href=True)
+        for link in all_links:
+            if not isinstance(link, Tag):
+                continue
+            href = _get_attr(link, "href") or ""
+            # Match pattern: /comprar-casas/{concelho}/concelhos-freguesias
+            if re.match(r"/(comprar|arrendar)-casas/[^/]+/concelhos-freguesias", href):
+                _add_concelho(link)
+
     logger.debug("Parsed %d concelhos from page", len(concelhos))
     return concelhos
+
+
+def _extract_concelho_slug(href: str) -> str:
+    """Extract the concelho slug from a URL path.
+
+    Args:
+        href: URL path like "/comprar-casas/cascais/concelhos-freguesias"
+              or "/comprar-casas/cascais/"
+              or "/comprar-casas/lisboa/azambuja/azambuja/concelhos-freguesias".
+
+    Returns:
+        The concelho slug (e.g., "cascais" or "azambuja").
+    """
+    if not href:
+        return ""
+
+    # Remove query string and fragment
+    href = href.split("?")[0].split("#")[0]
+
+    # Split the path
+    parts = href.rstrip("/").split("/")
+
+    # Find the part just before 'concelhos-freguesias' if present
+    if "concelhos-freguesias" in parts:
+        idx = parts.index("concelhos-freguesias")
+        if idx > 0:
+            candidate = parts[idx - 1]
+            # Skip if it's the operation type
+            if candidate not in ("comprar-casas", "arrendar-casas"):
+                return candidate
+
+    # Pattern: /comprar-casas/{concelho}/
+    # or /comprar-casas/{distrito}/{concelho}/
+    match = re.match(r"/(comprar|arrendar)-casas/([^/]+)/?$", href)
+    if match:
+        slug = match.group(2)
+        if slug not in ("mapa", "pagina", "concelhos-freguesias"):
+            return slug
+
+    return ""

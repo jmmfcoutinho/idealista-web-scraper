@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+from idealista_scraper.utils.async_time_utils import (
+    async_retry_with_backoff,
+    async_sleep_with_jitter,
+)
 from idealista_scraper.utils.billing import (
     AccountBalance,
     BandwidthTracker,
@@ -18,6 +22,9 @@ from idealista_scraper.utils.logging import get_logger, setup_logging
 from idealista_scraper.utils.time_utils import retry_with_backoff, sleep_with_jitter
 
 __all__ = [
+    # Async time utils
+    "async_retry_with_backoff",
+    "async_sleep_with_jitter",
     # Billing
     "AccountBalance",
     "BandwidthTracker",
